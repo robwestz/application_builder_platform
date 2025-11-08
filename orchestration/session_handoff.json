@@ -1,0 +1,187 @@
+{
+  "system_version": "1.0.0",
+  "purpose": "Ensure seamless knowledge transfer across 50+ sessions. PM reads this FIRST in every new session.",
+  "last_updated": "2025-11-08T00:00:00Z",
+  "session_number": 1,
+  "total_estimated_sessions": 50,
+
+  "quick_context": {
+    "current_phase": "Phase 0 - Kickoff",
+    "current_sprint": "Sprint 0",
+    "days_elapsed": 0,
+    "critical_next_actions": [
+      "FSA: Start catalog area mapping (T0.2)",
+      "ARCH: Begin monorepo scaffold (T0.3)",
+      "PM: Set budget and Sprint 0 goals (T0.1)"
+    ],
+    "blockers": [],
+    "hot_topics": [
+      "Foundation Sourcing Agent (FSA) is critical path - needs to complete scorecard in 2 days",
+      "Orchestration baseline just established - all agents need onboarding"
+    ]
+  },
+
+  "project_vital_signs": {
+    "health": "green",
+    "budget_status": {
+      "llm_tokens_used": 58000,
+      "llm_tokens_budget_sprint": 200000,
+      "percent_used": 29
+    },
+    "progress": {
+      "phase_0_completion": 0.05,
+      "phase_1_completion": 0.0,
+      "tasks_completed": 0,
+      "tasks_in_progress": 0,
+      "tasks_blocked": 0,
+      "tasks_total_phase_0": 10
+    },
+    "quality_metrics": {
+      "test_coverage": null,
+      "security_findings_open": 0,
+      "contract_validation_status": "not_started"
+    }
+  },
+
+  "active_work": {
+    "in_progress_tasks": [],
+    "waiting_for_review": [],
+    "ready_to_start": [
+      "T0.1-ProjectSetup",
+      "T0.2-FSA-Kickoff",
+      "T0.3-MonorepoScaffold"
+    ]
+  },
+
+  "session_summary_last": {
+    "session_number": 1,
+    "date": "2025-11-08",
+    "achievements": [
+      "Created Orchestration Baseline v1 (governance, roles, quality gates)",
+      "Created PM Minimum Checklist",
+      "Created SERP Observatory example project (6 JSON files)",
+      "Created Appkodplattform main project (7 JSON files including FSA spec)",
+      "Wrote comprehensive README.md",
+      "Committed and pushed to branch: claude/orchestration-baseline-appkod-011CUuq3Z5bYwdTufnpSdi65"
+    ],
+    "decisions_made": [
+      {
+        "id": "DEC-001",
+        "what": "Use 10-agent orchestration model with FSA as mandatory role",
+        "why": "FSA prevents reinventing the wheel, saves 4+ months by using battle-tested open-source",
+        "who": "PM + ARCH",
+        "when": "2025-11-08",
+        "impacts": ["All projects must have FSA", "Golden bases become standard"]
+      },
+      {
+        "id": "DEC-002",
+        "what": "Target enterprise-grade from day 1, not MVP",
+        "why": "Goal is to be first in Sweden with this class of platform; MVP would not differentiate",
+        "who": "PM",
+        "when": "2025-11-08",
+        "impacts": ["Higher initial investment", "Longer Phase 0/1", "Better quality from start"]
+      },
+      {
+        "id": "DEC-003",
+        "what": "Swedish/EU focus with GDPR-by-design",
+        "why": "Market differentiation; compliance as competitive advantage",
+        "who": "PM + SEC",
+        "when": "2025-11-08",
+        "impacts": ["All connectors must have ToS review", "DPIA templates mandatory", "EU hosting preferred"]
+      }
+    ],
+    "risks_identified": [
+      {
+        "id": "RISK-001",
+        "risk": "FSA delays could block entire Phase 0",
+        "mitigation": "FSA starts day 1, has 2-week buffer, PM monitors daily",
+        "status": "monitoring"
+      },
+      {
+        "id": "RISK-002",
+        "risk": "Scope creep - enterprise features are large",
+        "mitigation": "Strict phase gates, PM holds scope per phase",
+        "status": "monitoring"
+      }
+    ],
+    "assumptions_logged": [
+      {
+        "id": "ASS-001",
+        "assumption": "We can recruit/assign 10 agents simultaneously",
+        "validation_needed": "PM confirms team availability",
+        "status": "unverified"
+      },
+      {
+        "id": "ASS-002",
+        "assumption": "Postgres with RLS is sufficient for multi-tenant isolation",
+        "validation_needed": "FSA scorecard + SEC review",
+        "status": "unverified"
+      }
+    ],
+    "knowledge_created": [
+      "orchestration/orchestration_baseline_v1.json",
+      "orchestration/pm_minimum_checklist_v1.json",
+      "projects/appkodplattform/project_prompt.json",
+      "projects/appkodplattform/fsa_specification.json",
+      "projects/appkodplattform/task_dag.json",
+      "projects/appkodplattform/team_assembly.json",
+      "README.md"
+    ]
+  },
+
+  "handoff_to_next_session": {
+    "priority_actions": [
+      "Read this file (session_handoff.json) completely",
+      "Read decision_log.md for all decisions",
+      "Read assumptions.md for unverified assumptions",
+      "Check project_state.json for current task status",
+      "Review knowledge_index.json to understand where info lives"
+    ],
+    "context_to_load": {
+      "must_read": [
+        "session_handoff.json (this file)",
+        "project_state.json",
+        "decision_log.md (last 5 entries)",
+        "assumptions.md (unverified only)"
+      ],
+      "reference_when_needed": [
+        "projects/appkodplattform/project_prompt.json",
+        "projects/appkodplattform/task_dag.json",
+        "projects/appkodplattform/fsa_specification.json",
+        "orchestration/orchestration_baseline_v1.json"
+      ]
+    },
+    "open_questions": [
+      "When do we start Sprint 0 execution?",
+      "Who are the actual agents (humans or AI) assigned to each role?",
+      "What is the LLM token budget per sprint?"
+    ],
+    "warnings": [
+      "FSA is on critical path - must start by day 2",
+      "Orchestration baseline is only 5-10% of work; don't underestimate project size"
+    ]
+  },
+
+  "how_to_use_this_system": {
+    "at_session_start": [
+      "1. Read session_handoff.json (this file) - 2 min",
+      "2. Check project_state.json for current task statuses - 1 min",
+      "3. Read last 3-5 entries in decision_log.md - 1 min",
+      "4. Review unverified assumptions in assumptions.md - 1 min",
+      "Total: ~5 min to be fully up to speed"
+    ],
+    "during_session": [
+      "Log all decisions to decision_log.md immediately",
+      "Log all assumptions to assumptions.md immediately",
+      "Update project_state.json when task status changes",
+      "Add new files to knowledge_index.json"
+    ],
+    "at_session_end": [
+      "Update this file (session_handoff.json) with session summary",
+      "Increment session_number",
+      "Update handoff_to_next_session with priority actions",
+      "Commit all logs (decision_log, assumptions, project_state, this file)",
+      "Token usage check: if >80%, warn in handoff_to_next_session"
+    ]
+  }
+}
