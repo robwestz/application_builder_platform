@@ -1,13 +1,16 @@
 {
-  "title": "Svensk Appkodplattform – Enterprise-grade Builder & Code Export",
-  "why_now": "Svenska företag behöver en europeisk, GDPR-first, no-code/low-code plattform som inte är beroende av amerikanska molntjänster. Möjlighet att bli först i Sverige med enterprise-klass conversational builder.",
+  "title": "Svensk Appkodplattform – Universal Builder för VILKEN APP SOM HELST",
+  "core_idea": "Bygg VILKEN APP SOM HELST - från enkla hemsidor till avancerade SaaS-plattformar - via konversation eller Blueprint, med full kodexport och utan vendor lock-in.",
+  "why_now": "Svenska företag behöver en europeisk, GDPR-first, universal builder som inte är beroende av amerikanska molntjänster. Möjlighet att bli först i Sverige med enterprise-klass conversational builder som kan generera ALLA typer av applikationer.",
   "target_users": [
-    "Svenska företag (SME + Enterprise) som vill snabba upp app-utveckling",
-    "Konsulter/byråer som behöver snabb prototypning och leverans",
+    "Svenska företag (SME + Enterprise) som vill snabba upp app-utveckling av VILKEN typ som helst",
+    "Konsulter/byråer som behöver snabb prototypning och leverans av websites, e-commerce, SaaS, business apps",
     "Inhouse-team som saknar utvecklarkapacitet men har verksamhetskunnande",
-    "Organisationer med strikta compliance-krav (offentlig sektor, finans, hälsa)"
+    "Organisationer med strikta compliance-krav (offentlig sektor, finans, hälsa)",
+    "Entrepreneurs som vill bygga allt från landing pages till fullständiga plattformar"
   ],
-  "value_hypothesis": "En conversational builder som genererar fullständig, exporterbar kod (Next.js + FastAPI) med inbyggda svenska/EU-connectors (BankID, Fortnox, Visma, etc.), EU-hosting, och zero-trust säkerhet från dag 1. Kunden får både snabb time-to-market OCH full ägande av koden.",
+  "application_scope": "Websites, E-commerce, SaaS apps, CRM/ERP, booking systems, forums/communities, database apps, custom integrations - allt med avancerade funktioner (databaser, auth, payments, workflows, etc.)",
+  "value_hypothesis": "En universal conversational builder som genererar fullständig, exporterbar kod (Next.js + FastAPI + databas) för VILKEN APP SOM HELST, med inbyggda svenska/EU-connectors (BankID, Fortnox, Visma, etc.), EU-hosting, och zero-trust säkerhet från dag 1. Kunden får både snabb time-to-market OCH full äganderätt av koden.",
   "must_have_outcomes": [
     "Blueprint-driven codegen: konversation → YAML/JSON spec → fullständig app-kod",
     "Kod-export: kund kan ta sin genererade kod och köra själv (ingen vendor lock-in)",
@@ -25,7 +28,7 @@
     "Ingen 'toy' UI-only builder – detta är full-stack med starka rails",
     "Inga ToS-brott eller otillåten datainsamling"
   ],
-  "competitive_positioning": "Mer avancerad än Base44-typen av plattformar. Fokus på: (1) kod-export och ägarskap, (2) svenska/EU-connectors, (3) enterprise-säkerhet från dag 1, (4) LLM-driven conversational interface, (5) GDPR-by-design.",
+  "competitive_positioning": "En kombination av Bubble + Retool + Webflow + Shopify - fast med kod-export och svensk/EU-fokus. Fokus på: (1) VILKEN APP SOM HELST (websites, e-commerce, SaaS, business apps), (2) kod-export och fullständigt ägarskap, (3) svenska/EU-connectors (BankID, Fortnox, Visma), (4) enterprise-säkerhet från dag 1, (5) LLM-driven conversational interface, (6) GDPR-by-design, (7) ingen vendor lock-in.",
   "business_model": "SaaS: plattformssäte + build minutes + connector-användning. Enterprise: on-prem deploy + support. Marketplace: provision på recipes och connectors.",
   "success_criteria": [
     "Time-to-first-app < 30 minuter",

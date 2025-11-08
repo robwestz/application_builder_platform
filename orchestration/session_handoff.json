@@ -62,7 +62,10 @@
       "Created SERP Observatory example project (6 JSON files)",
       "Created Appkodplattform main project (7 JSON files including FSA spec)",
       "Wrote comprehensive README.md",
-      "Committed and pushed to branch: claude/orchestration-baseline-appkod-011CUuq3Z5bYwdTufnpSdi65"
+      "Created context continuity system: session_handoff.json, project_state.json, decision_log.md, assumptions.md, knowledge_index.json",
+      "Clarified project scope: Universal Builder (VILKEN APP SOM HELST), builder-kapacitet är primärt, connectors sekundärt",
+      "Added workflow automation (Make.com-liknande) to scope",
+      "Committed and pushed orchestration baseline + continuity system to branch"
     ],
     "decisions_made": [
       {
@@ -88,6 +91,14 @@
         "who": "PM + SEC",
         "when": "2025-11-08",
         "impacts": ["All connectors must have ToS review", "DPIA templates mandatory", "EU hosting preferred"]
+      },
+      {
+        "id": "DEC-006",
+        "what": "Primary focus is BUILDER CAPACITY (build any app), connectors are secondary",
+        "why": "User clarification: main value is ability to BUILD apps (databases, UI, API, logic), not connect external services",
+        "who": "PM + ARCH",
+        "when": "2025-11-08",
+        "impacts": ["Blueprint/DSL focuses on builder primitives first", "Task prioritization: core builder before connectors", "GTM leads with 'build any app' not connectors"]
       }
     ],
     "risks_identified": [

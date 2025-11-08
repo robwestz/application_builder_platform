@@ -140,6 +140,29 @@
 
 ---
 
+## DEC-006: Primary focus is BUILDER CAPACITY, connectors are secondary
+
+- **Date:** 2025-11-08
+- **Who:** PM + ARCH (based on user clarification)
+- **What:** Primary value is the ability to BUILD any application (databases, UI, API, logic) from scratch. Connectors (BankID, Stripe, etc.) are SECONDARY features that connect to already-built apps.
+- **Why:**
+  - Initial project description over-emphasized connectors as primary feature
+  - User clarification: "huvudsyftet är ju inte att kunna koppla bank id till något som byggts, det är ju att kunna bygga det som sen ska kunna ha dessa anslutna tjänster"
+  - Core differentiation is UNIVERSAL BUILDER (build ANY app type), not connector catalog
+  - Connectors add value but are not the primary value proposition
+- **Alternatives considered:**
+  - Connectors as primary feature → rejected, wrong focus
+  - Equal focus on builder + connectors → rejected, muddy value prop
+- **Impact:**
+  - Blueprint/DSL spec must focus on: datamodeller (schemas, relations), UI components, API endpoints, business logic, auth rules FIRST
+  - Connector SDK is important but secondary deliverable
+  - FSA catalog areas should prioritize: DB/ORM, UI/Designsystem, API/Framework, Workflows BEFORE connector integrations
+  - Marketing/GTM should lead with "build any app" not "Swedish connectors"
+  - Task prioritization in Phase 1: Core builder (codegen for DB + UI + API + logic) before connector implementation
+- **Status:** Active
+
+---
+
 ## Template for Future Decisions
 
 ```markdown
@@ -157,4 +180,4 @@
 ---
 
 **Last updated:** 2025-11-08 by PM (session 1)
-**Total decisions:** 5
+**Total decisions:** 6

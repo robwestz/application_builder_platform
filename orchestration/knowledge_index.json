@@ -1,0 +1,185 @@
+{
+  "index_version": "1.0.0",
+  "purpose": "Master index of where all knowledge lives. Use this to quickly find information without searching the entire repo.",
+  "last_updated": "2025-11-08T00:00:00Z",
+
+  "session_continuity": {
+    "description": "Files to read at session start (5-min onboarding)",
+    "priority_order": [
+      "orchestration/session_handoff.json (MUST READ FIRST - quick context)",
+      "orchestration/project_state.json (current task statuses)",
+      "orchestration/decision_log.md (last 3-5 decisions)",
+      "orchestration/assumptions.md (unverified assumptions only)"
+    ],
+    "time_to_read": "~5 minutes total"
+  },
+
+  "governance": {
+    "orchestration_baseline": {
+      "file": "orchestration/orchestration_baseline_v1.json",
+      "what": "6 handshakes, 10 roles, quality gates, automation core",
+      "when_to_read": "When unclear about governance process or role responsibilities"
+    },
+    "pm_checklist": {
+      "file": "orchestration/pm_minimum_checklist_v1.json",
+      "what": "PM requirements, status reporting, budget controls",
+      "when_to_read": "Sprint planning, status reporting"
+    },
+    "decision_log": {
+      "file": "orchestration/decision_log.md",
+      "what": "All significant decisions with context and rationale",
+      "when_to_read": "When questioning 'why did we decide X?'"
+    },
+    "assumptions": {
+      "file": "orchestration/assumptions.md",
+      "what": "Unverified assumptions that need validation",
+      "when_to_read": "Sprint planning, risk review, before major decisions"
+    }
+  },
+
+  "project_definition": {
+    "idea_brief": {
+      "file": "projects/appkodplattform/idea_brief.json",
+      "what": "Core idea, target users, value hypothesis, success criteria",
+      "when_to_read": "When need to remember 'what are we building and why?'"
+    },
+    "project_prompt": {
+      "file": "projects/appkodplattform/project_prompt.json",
+      "what": "Scope, constraints, deliverables, success metrics, FSA spec",
+      "when_to_read": "When need full project scope and technical constraints"
+    },
+    "system_prompt": {
+      "file": "projects/appkodplattform/system_prompt.json",
+      "what": "Rules, style, safety requirements for all agents",
+      "when_to_read": "When uncertain about coding standards, security rules, or process"
+    }
+  },
+
+  "team_and_tasks": {
+    "team_assembly": {
+      "file": "projects/appkodplattform/team_assembly.json",
+      "what": "10 agents with roles, responsibilities, deliverables",
+      "when_to_read": "When need to know who owns what"
+    },
+    "task_dag": {
+      "file": "projects/appkodplattform/task_dag.json",
+      "what": "All tasks for Phase 0 + Phase 1 with dependencies and handshakes",
+      "when_to_read": "Sprint planning, understanding critical path, checking dependencies"
+    },
+    "project_state": {
+      "file": "orchestration/project_state.json",
+      "what": "Real-time status of all tasks, team availability, metrics",
+      "when_to_read": "Every session start, before status updates"
+    }
+  },
+
+  "technical_foundation": {
+    "fsa_specification": {
+      "file": "projects/appkodplattform/fsa_specification.json",
+      "what": "Foundation Sourcing Agent mandate, catalog areas, scorecard",
+      "when_to_read": "When FSA needs guidance, or when choosing open-source components"
+    },
+    "foundation_catalog": {
+      "file": "projects/appkodplattform/foundation_catalog.json",
+      "what": "Catalog of chosen open-source components with versions, CVE status",
+      "when_to_read": "When integrating components, checking for updates, CVE monitoring"
+    },
+    "artifact_manifest": {
+      "file": "projects/appkodplattform/artifact_manifest.json",
+      "what": "Expected file structure, artifact counts, build artifacts",
+      "when_to_read": "When scaffolding, checking if artifacts are created"
+    }
+  },
+
+  "documentation": {
+    "main_readme": {
+      "file": "README.md",
+      "what": "Overview of orchestration framework, projects, how to get started",
+      "when_to_read": "Onboarding new team members, explaining the system to stakeholders"
+    }
+  },
+
+  "example_project": {
+    "serp_observatory": {
+      "folder": "projects/serp_observatory/",
+      "what": "Example project showing how to apply Orchestration Baseline",
+      "when_to_read": "When need template for new project"
+    }
+  },
+
+  "common_questions": {
+    "what_are_we_building": {
+      "answer": "Universal builder för VILKEN APP SOM HELST - websites, e-commerce, SaaS, business apps",
+      "file": "projects/appkodplattform/idea_brief.json"
+    },
+    "why_enterprise_not_mvp": {
+      "answer": "Goal is first-in-Sweden with this class; MVP won't differentiate; retrofitting security/multi-tenancy is 10x harder",
+      "file": "orchestration/decision_log.md (DEC-002)"
+    },
+    "why_fsa_mandatory": {
+      "answer": "Prevents reinventing wheel; saves 4+ months; ensures quality/security via scorecard",
+      "file": "orchestration/decision_log.md (DEC-001)"
+    },
+    "what_is_critical_path": {
+      "answer": "FSA golden bases → Contracts → Codegen → Runner → Tests",
+      "file": "projects/appkodplattform/task_dag.json (dependencies_summary)"
+    },
+    "how_long_is_phase_0": {
+      "answer": "2 weeks with 10 parallel agents, 6-8 weeks with 1 agent sequential",
+      "file": "projects/appkodplattform/task_dag.json"
+    },
+    "what_tech_stack": {
+      "answer": "Next.js + FastAPI + Postgres (starting stack, utbyggbart)",
+      "file": "projects/appkodplattform/project_prompt.json (scope)"
+    },
+    "what_connectors_v1": {
+      "answer": "8 Swedish/EU: BankID, Fortnox, Visma, Swish, Klarna, Stripe, e-sign, email/SMS",
+      "file": "projects/appkodplattform/project_prompt.json (scope)"
+    },
+    "what_is_handshake_protocol": {
+      "answer": "PLAN → SPEC → DRAFT → REVIEW → COMMIT → RELEASE (6 stages)",
+      "file": "orchestration/orchestration_baseline_v1.json (governance.handshakes)"
+    }
+  },
+
+  "file_categories": {
+    "must_read_every_session": [
+      "orchestration/session_handoff.json",
+      "orchestration/project_state.json"
+    ],
+    "read_when_making_decisions": [
+      "orchestration/decision_log.md",
+      "orchestration/assumptions.md",
+      "projects/appkodplattform/project_prompt.json"
+    ],
+    "reference_when_needed": [
+      "orchestration/orchestration_baseline_v1.json",
+      "projects/appkodplattform/task_dag.json",
+      "projects/appkodplattform/team_assembly.json",
+      "projects/appkodplattform/fsa_specification.json"
+    ],
+    "update_frequently": [
+      "orchestration/session_handoff.json (end of every session)",
+      "orchestration/project_state.json (when task status changes)",
+      "orchestration/decision_log.md (immediately when decision made)",
+      "orchestration/assumptions.md (immediately when assumption made or verified)"
+    ]
+  },
+
+  "search_strategies": {
+    "find_a_decision": "Search orchestration/decision_log.md for keywords or DEC-XXX ID",
+    "find_an_assumption": "Search orchestration/assumptions.md for keywords or ASS-XXX ID",
+    "find_task_status": "Check orchestration/project_state.json under tasks.phase_X",
+    "find_who_owns_what": "Check projects/appkodplattform/team_assembly.json",
+    "find_dependencies": "Check projects/appkodplattform/task_dag.json under task.depends_on",
+    "find_what_to_build_next": "Check orchestration/session_handoff.json → priority_actions"
+  },
+
+  "anti_patterns": {
+    "dont_search_git_history": "Use decision_log.md instead - git history is noisy",
+    "dont_guess_task_status": "Always check project_state.json - it's source of truth",
+    "dont_skip_session_handoff": "Reading session_handoff.json saves hours of context rebuild",
+    "dont_forget_to_log_decisions": "Future PM will curse you if decisions aren't logged",
+    "dont_make_assumptions_without_logging": "Unlogged assumptions = guaranteed to bite later"
+  }
+}
