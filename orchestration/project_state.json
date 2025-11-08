@@ -74,16 +74,16 @@
       },
       {
         "id": "T0.5-FSA-GoldenBases",
-        "status": "pending",
+        "status": "completed",
         "owner": "FSA",
-        "progress_percent": 0,
+        "progress_percent": 100,
         "blocked": false,
         "blocker_reason": null,
         "depends_on": ["T0.2-FSA-Kickoff", "T0.3-MonorepoScaffold"],
-        "started_date": null,
-        "completed_date": null,
-        "handshake_current": null,
-        "notes": "Critical path - target: 9 golden bases in 1 week"
+        "started_date": "2025-11-08",
+        "completed_date": "2025-11-08",
+        "handshake_current": "RELEASE",
+        "notes": "✅ All 9 golden bases created! foundations/ directory with READMEs for: auth-keycloak, policy-opa, database-postgres, queues-temporal, api-fastapi, ui-radix, infra-pulumi, testing-playwright, security-trivy. Master README with scoring, principles, quick starts."
       },
       {
         "id": "T0.6-Contracts-Core",
@@ -100,55 +100,55 @@
       },
       {
         "id": "T0.7-Codegen-Setup",
-        "status": "pending",
+        "status": "completed",
         "owner": "API",
-        "progress_percent": 0,
+        "progress_percent": 100,
         "blocked": false,
         "blocker_reason": null,
         "depends_on": ["T0.6-Contracts-Core", "T0.5-FSA-GoldenBases"],
-        "started_date": null,
-        "completed_date": null,
-        "handshake_current": null,
-        "notes": "Needs contracts + FSA decision on codegen tooling"
+        "started_date": "2025-11-08",
+        "completed_date": "2025-11-08",
+        "handshake_current": "RELEASE",
+        "notes": "✅ Codegen engine MVP complete! BlueprintParser (validation), DatabaseGenerator (Prisma + SQLModel), APIGenerator (FastAPI routes), UIGenerator (Next.js pages), CodegenEngine (orchestrator). Generates CRUD apps from Blueprint YAML/JSON."
       },
       {
         "id": "T0.8-CLI-Bootstrap",
-        "status": "pending",
+        "status": "completed",
         "owner": "API",
-        "progress_percent": 0,
+        "progress_percent": 100,
         "blocked": false,
         "blocker_reason": null,
         "depends_on": ["T0.7-Codegen-Setup"],
-        "started_date": null,
-        "completed_date": null,
-        "handshake_current": null,
-        "notes": "CLI for scaffold, codegen, validate"
+        "started_date": "2025-11-08",
+        "completed_date": "2025-11-08",
+        "handshake_current": "RELEASE",
+        "notes": "✅ CLI tool complete! Commands: generate (Blueprint→code), validate (schema check), init, scaffold, dev, deploy, export. TypeScript with Commander, Chalk, Ora. Integrates with @appkod/contracts for validation."
       },
       {
         "id": "T0.9-CI-Pipeline-Basic",
-        "status": "pending",
+        "status": "completed",
         "owner": "OPS",
-        "progress_percent": 0,
+        "progress_percent": 100,
         "blocked": false,
         "blocker_reason": null,
         "depends_on": ["T0.7-Codegen-Setup"],
-        "started_date": null,
-        "completed_date": null,
-        "handshake_current": null,
-        "notes": "lint + unit + contract validation"
+        "started_date": "2025-11-08",
+        "completed_date": "2025-11-08",
+        "handshake_current": "RELEASE",
+        "notes": "✅ CI/CD pipeline complete! GitHub Actions (lint, typecheck, test, build, security), Trivy scanning (CVE + secrets), Dependabot (weekly updates), Pre-commit hooks (ruff, prettier, secret detection). SARIF upload to GitHub Security."
       },
       {
         "id": "T0.10-Docs-Phase0",
-        "status": "pending",
+        "status": "completed",
         "owner": "WR",
-        "progress_percent": 0,
+        "progress_percent": 100,
         "blocked": false,
         "blocker_reason": null,
         "depends_on": ["T0.8-CLI-Bootstrap", "T0.5-FSA-GoldenBases"],
-        "started_date": null,
-        "completed_date": null,
-        "handshake_current": null,
-        "notes": "Document all Phase 0 deliverables"
+        "started_date": "2025-11-08",
+        "completed_date": "2025-11-08",
+        "handshake_current": "RELEASE",
+        "notes": "✅ Phase 0 docs complete! Updated main README with all deliverables, foundations READMEs (9), codegen README, CLI README, CI/CD README. Full documentation for entire Phase 0 stack."
       }
     ],
     "phase_1": []
