@@ -1,0 +1,492 @@
+{
+  "project_id": "APPKOD-PLATFORM-001",
+  "dag_version": "1.0.0",
+  "note": "Detta är task DAG för Phase 0 + Phase 1. Phase 2-3 kommer att definieras när Phase 1 är klar. DAG är stor eftersom detta är enterprise-grade från dag 1.",
+  "phases": {
+    "phase_0": "Scaffold + Contracts + CLI + minimal blueprint parser",
+    "phase_1": "Codegen v1 + Runner + 4 connectors + Auth/Policy + GUI Studio beta"
+  },
+  "tasks": [
+    {
+      "id": "T0.1-ProjectSetup",
+      "phase": "phase_0",
+      "objective": "PM setup: repo, team onboarding, sprint 0 planering",
+      "owner_role": "PM",
+      "depends_on": [],
+      "handshake": ["PLAN", "COMMIT"],
+      "deliverables": [
+        "Sprint 0 plan",
+        "Decision log initialized",
+        "assumptions.md",
+        "Risk register"
+      ],
+      "acceptance_criteria": [
+        "Alla agenter har access till repo",
+        "Sprint 0 mål definierade",
+        "Budget och timeline satt"
+      ]
+    },
+    {
+      "id": "T0.2-FSA-Kickoff",
+      "phase": "phase_0",
+      "objective": "FSA: Kartlägg alla 9 catalog areas, starta scorecard-utvärdering",
+      "owner_role": "FSA",
+      "depends_on": ["T0.1-ProjectSetup"],
+      "handshake": ["PLAN", "DRAFT"],
+      "deliverables": [
+        "Kandidatlistor för varje area",
+        "Initial scorecard results (kan vara draft)"
+      ],
+      "acceptance_criteria": [
+        "Minst 3 kandidater per area identifierade",
+        "Scorecard template fylld för top 2 kandidater per area"
+      ]
+    },
+    {
+      "id": "T0.3-MonorepoScaffold",
+      "phase": "phase_0",
+      "objective": "ARCH: Skapa monorepo struktur enligt Orchestration-Baseline-v1",
+      "owner_role": "ARCH",
+      "depends_on": ["T0.1-ProjectSetup"],
+      "handshake": ["PLAN", "COMMIT"],
+      "deliverables": [
+        "Monorepo scaffold: core-contracts, pipelines, services-api, ui-app, infra, tests, docs",
+        "Makefile",
+        "docker-compose.yml (initial)",
+        "CODEOWNERS",
+        "repo_blueprint.json"
+      ],
+      "acceptance_criteria": [
+        "Alla packages har README",
+        "CODEOWNERS mappar roller till packages",
+        "docker-compose startar utan fel (även om tom)"
+      ]
+    },
+    {
+      "id": "T0.4-BlueprintDSL-Spec",
+      "phase": "phase_0",
+      "objective": "ARCH + ANALYST: Definiera Blueprint/DSL specifikation (YAML/JSON schema)",
+      "owner_role": "ARCH",
+      "depends_on": ["T0.3-MonorepoScaffold"],
+      "handshake": ["PLAN", "SPEC", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "contracts/blueprint.schema.json",
+        "Exempel Blueprint YAML för enkel CRUD-app",
+        "Parser stub (validering mot schema)"
+      ],
+      "acceptance_criteria": [
+        "Schema täcker: datamodeller, UI-komponenter, workflows, auth-regler, connectors",
+        "JSON Schema validerbar",
+        "Exempel Blueprint valideras utan fel"
+      ]
+    },
+    {
+      "id": "T0.5-FSA-GoldenBases",
+      "phase": "phase_0",
+      "objective": "FSA: Välj top-kandidat per area, skapa golden bases",
+      "owner_role": "FSA",
+      "depends_on": ["T0.2-FSA-Kickoff", "T0.3-MonorepoScaffold"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "foundation_catalog.json (populated)",
+        "foundations/{area}/ för alla 9 areas",
+        "SCORECARD.md per vald komponent",
+        "ALTERNATIVES.md per area"
+      ],
+      "acceptance_criteria": [
+        "Alla 9 areas har vald komponent med score >= 0.6",
+        "Golden base för varje area har docker-compose + config + integration exempel",
+        "ALTERNATIVES.md listar minst 2 backup-alternativ per area"
+      ]
+    },
+    {
+      "id": "T0.6-Contracts-Core",
+      "phase": "phase_0",
+      "objective": "ARCH: Definiera core contracts (User, Tenant, App, Deployment, etc.)",
+      "owner_role": "ARCH",
+      "depends_on": ["T0.4-BlueprintDSL-Spec"],
+      "handshake": ["PLAN", "SPEC", "COMMIT"],
+      "deliverables": [
+        "contracts/user.schema.json",
+        "contracts/tenant.schema.json",
+        "contracts/app.schema.json",
+        "contracts/deployment.schema.json",
+        "contracts/connector.schema.json"
+      ],
+      "acceptance_criteria": [
+        "Alla schemas är valid JSON Schema",
+        "Codegen kan generera TS types + Pydantic models"
+      ]
+    },
+    {
+      "id": "T0.7-Codegen-Setup",
+      "phase": "phase_0",
+      "objective": "API: Sätt upp codegen pipeline (*.schema.json → TS + Pydantic)",
+      "owner_role": "API",
+      "depends_on": ["T0.6-Contracts-Core", "T0.5-FSA-GoldenBases"],
+      "handshake": ["PLAN", "DRAFT", "COMMIT"],
+      "deliverables": [
+        "scripts/codegen.sh",
+        "Genererade types i core-contracts/generated/",
+        "Pre-commit hook för auto-codegen"
+      ],
+      "acceptance_criteria": [
+        "Kör codegen → inga fel",
+        "Genererade types matchar schemas",
+        "Pre-commit hook triggas vid schema-ändringar"
+      ]
+    },
+    {
+      "id": "T0.8-CLI-Bootstrap",
+      "phase": "phase_0",
+      "objective": "API: Skapa CLI (gom/ctl) för scaffold, codegen, validate",
+      "owner_role": "API",
+      "depends_on": ["T0.7-Codegen-Setup"],
+      "handshake": ["PLAN", "DRAFT", "COMMIT"],
+      "deliverables": [
+        "cli/gom (eller ctl)",
+        "Kommandon: init, generate, validate, build, deploy (stubs för nu)"
+      ],
+      "acceptance_criteria": [
+        "gom init skapar ny app från template",
+        "gom generate kör codegen",
+        "gom validate checkar Blueprint mot schema"
+      ]
+    },
+    {
+      "id": "T0.9-CI-Pipeline-Basic",
+      "phase": "phase_0",
+      "objective": "OPS: Sätt upp basic CI (lint, unit, contract-validate)",
+      "owner_role": "OPS",
+      "depends_on": ["T0.7-Codegen-Setup"],
+      "handshake": ["PLAN", "DRAFT", "COMMIT"],
+      "deliverables": [
+        ".github/workflows/ci.yaml",
+        "Lint (ESLint, Ruff/Black)",
+        "Unit tests (Jest/Vitest, pytest)",
+        "Contract validation (JSON Schema)"
+      ],
+      "acceptance_criteria": [
+        "CI körs på varje PR",
+        "Lint + unit + contract validation måste passa innan merge"
+      ]
+    },
+    {
+      "id": "T0.10-Docs-Phase0",
+      "phase": "phase_0",
+      "objective": "WR: Dokumentera Phase 0 deliverables",
+      "owner_role": "WR",
+      "depends_on": ["T0.8-CLI-Bootstrap", "T0.5-FSA-GoldenBases"],
+      "handshake": ["PLAN", "COMMIT"],
+      "deliverables": [
+        "docs/README.md (project overview)",
+        "docs/quickstart.md (hur man kör lokalt)",
+        "docs/blueprint-syntax.md (DSL spec)",
+        "docs/cli-reference.md"
+      ],
+      "acceptance_criteria": [
+        "Ny utvecklare kan clona repo och köra lokalt med endast docs",
+        "Blueprint syntax är tydligt dokumenterad med exempel"
+      ]
+    },
+    {
+      "id": "T1.1-Auth-Integration",
+      "phase": "phase_1",
+      "objective": "API + FSA: Integrera vald Auth/SSO (från golden base)",
+      "owner_role": "API",
+      "depends_on": ["T0.5-FSA-GoldenBases", "T0.9-CI-Pipeline-Basic"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "services/api/auth/* (OIDC integration)",
+        "Multi-tenant support (organizations/teams)",
+        "Auth middleware för API endpoints",
+        "Admin UI för user/org management (eller använd golden base UI)"
+      ],
+      "acceptance_criteria": [
+        "User kan logga in via OIDC",
+        "Organizations + teams fungerar",
+        "Auth middleware blockerar unauthorized requests"
+      ]
+    },
+    {
+      "id": "T1.2-Policy-Integration",
+      "phase": "phase_1",
+      "objective": "API + SEC + FSA: Integrera vald Policy/ABAC motor",
+      "owner_role": "API",
+      "depends_on": ["T1.1-Auth-Integration"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "services/api/policy/* (OpenFGA/OPA integration)",
+        "Policy definitions för tenant isolation, RBAC, ABAC",
+        "Policy middleware för API endpoints",
+        "Audit trail för policy decisions"
+      ],
+      "acceptance_criteria": [
+        "Policy checks fungerar (<10ms p95 latency)",
+        "Tenant isolation enforced via policy",
+        "Audit log loggade alla policy decisions"
+      ]
+    },
+    {
+      "id": "T1.3-DB-RLS-Setup",
+      "phase": "phase_1",
+      "objective": "API + FSA: Sätt upp Postgres med RLS, ORM, migrations",
+      "owner_role": "API",
+      "depends_on": ["T0.5-FSA-GoldenBases", "T1.2-Policy-Integration"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "Postgres med RLS policies",
+        "ORM setup (Prisma/Drizzle + SQLModel/SQLAlchemy)",
+        "Migrations tooling",
+        "Multi-tenant schema (shared schema + RLS eller schema-per-tenant)"
+      ],
+      "acceptance_criteria": [
+        "RLS policies blockerar cross-tenant access",
+        "Migrations körs automatiskt i CI/CD",
+        "ORM queries är type-safe"
+      ]
+    },
+    {
+      "id": "T1.4-Codegen-Engine-v1",
+      "phase": "phase_1",
+      "objective": "API: Implementera codegen-motor (Blueprint → Next.js + FastAPI)",
+      "owner_role": "API",
+      "depends_on": ["T0.4-BlueprintDSL-Spec", "T1.3-DB-RLS-Setup"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "pipelines/codegen/* (Blueprint parser + code generator)",
+        "Templates för Next.js (pages, components, API routes)",
+        "Templates för FastAPI (models, routers, CRUD)",
+        "Golden tests för codegen output"
+      ],
+      "acceptance_criteria": [
+        "Exempel Blueprint → fullständig Next.js + FastAPI app",
+        "Genererad kod kompilerar utan fel",
+        "Golden tests passar (output matchar expected)"
+      ]
+    },
+    {
+      "id": "T1.5-Runner-Serverless",
+      "phase": "phase_1",
+      "objective": "API + OPS: Implementera serverless/runner-lager för multi-tenant",
+      "owner_role": "API",
+      "depends_on": ["T1.4-Codegen-Engine-v1", "T1.2-Policy-Integration"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "services/runner/* (serverless runtime)",
+        "Tenant isolation (containers/VMs/functions)",
+        "Per-tenant KMS keys",
+        "Rate limiting per tenant",
+        "Cost tracking per tenant"
+      ],
+      "acceptance_criteria": [
+        "Genererade appar körs i isolerade miljöer",
+        "Tenant A kan inte se Tenant B:s data",
+        "Cost tracking fungerar (mäter CPU/memory/network per tenant)"
+      ]
+    },
+    {
+      "id": "T1.6-Connectors-SDK",
+      "phase": "phase_1",
+      "objective": "API + ANALYST: Skapa Connector SDK + 4 priority connectors",
+      "owner_role": "API",
+      "depends_on": ["T1.3-DB-RLS-Setup"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "services/connectors/sdk/* (Connector SDK base)",
+        "BankID connector",
+        "Fortnox connector",
+        "Stripe connector",
+        "Notion connector",
+        "Connector tests (unit + integration med mocks)"
+      ],
+      "acceptance_criteria": [
+        "Varje connector följer SDK interface",
+        "ToS compliance dokumenterad för varje connector",
+        "Mocks för testing (inga live API calls i CI)"
+      ]
+    },
+    {
+      "id": "T1.7-GUI-Studio-Beta",
+      "phase": "phase_1",
+      "objective": "UI: Skapa GUI Studio beta (Blueprint editor, preview)",
+      "owner_role": "UI",
+      "depends_on": ["T0.4-BlueprintDSL-Spec", "T1.4-Codegen-Engine-v1"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "ui-app/studio/* (Blueprint editor)",
+        "Real-time validation mot schema",
+        "Preview environment (kör genererad app i iframe/sandbox)",
+        "Component library + Storybook"
+      ],
+      "acceptance_criteria": [
+        "User kan skriva Blueprint i editor med syntax highlighting",
+        "Validation errors visas i realtid",
+        "Preview environment visar genererad app live"
+      ]
+    },
+    {
+      "id": "T1.8-OpenAPI-Platform",
+      "phase": "phase_1",
+      "objective": "API: Skapa OpenAPI spec för plattformens API",
+      "owner_role": "API",
+      "depends_on": ["T1.5-Runner-Serverless", "T1.6-Connectors-SDK"],
+      "handshake": ["PLAN", "SPEC", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "services/api/openapi.yaml",
+        "Endpoints: /apps, /blueprints, /deployments, /connectors, /users, /orgs",
+        "Auto-generated API docs (Swagger/Redoc)"
+      ],
+      "acceptance_criteria": [
+        "OpenAPI spec linter passar",
+        "API docs är läsbara och korrekta",
+        "Alla endpoints implementerade och testade"
+      ]
+    },
+    {
+      "id": "T1.9-Tests-Phase1",
+      "phase": "phase_1",
+      "objective": "QA: Implementera tester för Phase 1 (unit, contract, e2e)",
+      "owner_role": "QA",
+      "depends_on": ["T1.8-OpenAPI-Platform", "T1.7-GUI-Studio-Beta"],
+      "handshake": ["PLAN", "DRAFT", "COMMIT"],
+      "deliverables": [
+        "tests/unit/* (alla services)",
+        "tests/contract/* (API contracts, Pact eller likvärdigt)",
+        "tests/e2e/* (Playwright: user flow från Blueprint → preview)",
+        "Coverage report (target: >70%)"
+      ],
+      "acceptance_criteria": [
+        "All tests passar i CI",
+        "Coverage >= 70%",
+        "E2E test täcker kritisk user journey"
+      ]
+    },
+    {
+      "id": "T1.10-Security-Phase1",
+      "phase": "phase_1",
+      "objective": "SEC: Security audit för Phase 1, DPIA-mall, SBOM",
+      "owner_role": "SEC",
+      "depends_on": ["T1.2-Policy-Integration", "T1.5-Runner-Serverless"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"],
+      "deliverables": [
+        "DPIA-mall",
+        "Security checklist (signed off)",
+        "SBOM (CycloneDX/SPDX)",
+        "Vulnerability scan reports",
+        "ToS compliance matrix för alla 4 connectors"
+      ],
+      "acceptance_criteria": [
+        "Inga blocking security findings",
+        "DPIA-mall godkänd av legal (om tillgänglig)",
+        "SBOM genereras automatiskt i CI",
+        "ToS compliance dokumenterad"
+      ]
+    },
+    {
+      "id": "T1.11-Observability-Phase1",
+      "phase": "phase_1",
+      "objective": "OPS: Sätt upp observability (logs, metrics, traces, cost)",
+      "owner_role": "OPS",
+      "depends_on": ["T1.5-Runner-Serverless"],
+      "handshake": ["PLAN", "DRAFT", "COMMIT"],
+      "deliverables": [
+        "OpenTelemetry integration (traces)",
+        "Structured logs (JSON)",
+        "Metrics (Prometheus/Grafana eller liknande)",
+        "Cost tracking dashboard per tenant",
+        "Alerts för SLO violations"
+      ],
+      "acceptance_criteria": [
+        "Traces fungerar end-to-end (frontend → backend → DB)",
+        "Logs är sökbara och structured",
+        "Cost tracking visar per-tenant breakdown",
+        "Alerts triggas vid SLO breach"
+      ]
+    },
+    {
+      "id": "T1.12-Docs-Phase1",
+      "phase": "phase_1",
+      "objective": "WR: Dokumentera Phase 1 deliverables + GTM-material",
+      "owner_role": "WR",
+      "depends_on": ["T1.7-GUI-Studio-Beta", "T1.6-Connectors-SDK"],
+      "handshake": ["PLAN", "COMMIT"],
+      "deliverables": [
+        "docs/studio-guide.md (hur man använder GUI Studio)",
+        "docs/connectors/* (doc per connector)",
+        "docs/api-reference.md (från OpenAPI)",
+        "GTM: landing page copy, pricing page draft",
+        "Changelog för Phase 1"
+      ],
+      "acceptance_criteria": [
+        "User kan bygga första app med endast docs",
+        "Varje connector har användningsexempel",
+        "GTM-material är review-ready"
+      ]
+    },
+    {
+      "id": "T1.13-Release-Phase1",
+      "phase": "phase_1",
+      "objective": "OPS + PM: Release Phase 1 (deploy till staging, smoke tests)",
+      "owner_role": "OPS",
+      "depends_on": [
+        "T1.9-Tests-Phase1",
+        "T1.10-Security-Phase1",
+        "T1.11-Observability-Phase1",
+        "T1.12-Docs-Phase1"
+      ],
+      "handshake": ["PLAN", "RELEASE"],
+      "deliverables": [
+        "Staging deployment",
+        "Smoke tests passed",
+        "Runbook uppdaterad",
+        "Release notes"
+      ],
+      "acceptance_criteria": [
+        "Staging miljö körs stabilt",
+        "Smoke tests passar",
+        "SLO metrics inom target (p50 < 300ms, p95 < 900ms)",
+        "Rollback plan testad"
+      ]
+    }
+  ],
+  "success_criteria_phase_0": [
+    "Monorepo scaffold komplett och CODEOWNERS på plats",
+    "Blueprint DSL spec definierad och validerad",
+    "FSA har valt komponenter för alla 9 areas med golden bases",
+    "Codegen pipeline fungerar (schema → types)",
+    "CLI kan scaffolda ny app",
+    "CI pipeline (lint + unit + contract) fungerar",
+    "Docs tillåter ny utvecklare att komma igång"
+  ],
+  "success_criteria_phase_1": [
+    "Auth/Policy integration fungerar med multi-tenant",
+    "Codegen genererar fullständig Next.js + FastAPI app från Blueprint",
+    "4 connectors (BankID, Fortnox, Stripe, Notion) fungerar",
+    "GUI Studio beta tillåter Blueprint editing + preview",
+    "OpenAPI spec komplett och implementerad",
+    "Tests passar med coverage >= 70%",
+    "Security audit clean (inga blocking findings)",
+    "Observability fungerar (logs, metrics, traces, cost)",
+    "Staging deployment stabil",
+    "SLO metrics inom target"
+  ],
+  "dependencies_summary": {
+    "critical_path": [
+      "T0.1 → T0.3 → T0.4 → T0.6 → T0.7 → T0.9 → T1.3 → T1.4 → T1.5 → T1.8 → T1.9 → T1.13"
+    ],
+    "parallelizable": [
+      "T0.2 (FSA) kan köras parallellt med T0.3-T0.4",
+      "T1.1, T1.2, T1.3 kan delvis parallellas efter T0.9",
+      "T1.6 (Connectors) kan köras parallellt med T1.4-T1.5",
+      "T1.7 (UI) kan starta efter T0.4 och köras parallellt med T1.1-T1.6",
+      "T1.10 (SEC), T1.11 (OPS), T1.12 (WR) kan köras parallellt under slutet av Phase 1"
+    ]
+  },
+  "risk_mitigation": {
+    "risk_fsa_delays": "Mitigation: FSA börjar dag 1, har 2 veckor buffer för scorecard",
+    "risk_codegen_complexity": "Mitigation: Starta med enkel CRUD-template, iterera",
+    "risk_connector_tos": "Mitigation: SEC granskar ToS före implementation, använd sandbox/test API:er",
+    "risk_scope_creep": "Mitigation: PM håller strict scope per phase, Phase 2-3 features blocked tills Phase 1 done"
+  }
+}

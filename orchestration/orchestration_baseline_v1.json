@@ -1,0 +1,59 @@
+{
+  "id": "Orchestration-Baseline-v1",
+  "version": "1.0.0",
+  "message_for_teams": "Detta är MINIMI-kraven för hur projekt drivs. Det är en baslinje (~5–10% av arbetsmängden). 90%+ av arbetet är projektspecifikt och växer till hundratusentals rader kod och data-artefakter.",
+  "governance": {
+    "handshakes": ["PLAN", "SPEC", "DRAFT", "REVIEW", "COMMIT", "RELEASE"],
+    "definition_of_ready": ["idea_brief.json", "system_prompt.json", "project_prompt.json", "team_assembly.json finns och validerar"],
+    "definition_of_done": ["tests_pass", "security_checklist_signed", "docs_minimum_ready", "openapi_linted_if_api"]
+  },
+  "minimum_roles_10": [
+    {"role": "PM", "responsibility": "mål, prioritering, budget, beslutslogg"},
+    {"role": "ARCH", "responsibility": "systemdesign, kontrakt, repo-struktur"},
+    {"role": "FETCH", "responsibility": "datakällor, normalisering, sekretess/ToS"},
+    {"role": "ANALYST", "responsibility": "intent/feature-syntes, datalogik"},
+    {"role": "API", "responsibility": "backend/API, OpenAPI, stabilitet"},
+    {"role": "UI", "responsibility": "frontend/UX, exports"},
+    {"role": "WR", "responsibility": "dokumentation, GTM-material"},
+    {"role": "QA", "responsibility": "test, kontrakt, compliance"},
+    {"role": "OPS", "responsibility": "CI/CD, secrets, observability"},
+    {"role": "SEC", "responsibility": "säkerhet, GDPR/DPIA, ToS-granskning"}
+  ],
+  "quality_gates": {
+    "contracts_validate": true,
+    "openapi_required_if_api": true,
+    "tests_minimum": ["unit", "contract", "e2e"],
+    "evidence_log_required": true,
+    "security_checks": ["oidc_or_equivalent", "tenant_isolation", "audit_logs", "secrets_management"]
+  },
+  "automation_core": {
+    "scaffold": ["monorepo", "packages: core-contracts, pipelines, services-api, ui-app, infra, tests, docs"],
+    "codegen": ["*.schema.json -> TS types + Pydantic modeller", "pre-commit hooks"],
+    "ci_pipelines": ["lint", "unit", "contract-validate", "build", "e2e", "release"],
+    "cli": ["gom init", "gom generate contracts", "gom run sprint0"],
+    "templates": ["idea_brief.json", "system_prompt.json", "project_prompt.json", "team_assembly.json", "task_spec_list.json", "artifact_manifest.json", "repo_blueprint.json", "runbook.json"]
+  },
+  "security_privacy": {
+    "gdpr_eu_first": true,
+    "pii_default_masking": true,
+    "tos_compliance": true,
+    "no_unapproved_scraping": true
+  },
+  "repo_blueprint": {
+    "packages": ["core-contracts", "pipelines", "services-api", "ui-app", "infra", "tests", "docs"],
+    "languages": ["python", "typescript"],
+    "ownership": {
+      "core-contracts": "ARCH+QA",
+      "pipelines": "FETCH+ANALYST",
+      "services-api": "API",
+      "ui-app": "UI",
+      "infra": "OPS+SEC",
+      "tests": "QA",
+      "docs": "WR"
+    }
+  },
+  "communication": {
+    "project_size_statement": "Baslinjen är endast startspår: <10% av total insats; resten är projektspecifika moduler, pipelines, UI och drift.",
+    "risk_transparency": "Alla antaganden journalförs i assumptions.md och verifieras i REVIEW."
+  }
+}

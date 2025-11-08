@@ -1,0 +1,51 @@
+{
+  "title": "Svensk Appkodplattform – Bygg VAD SOM HELST av VEM SOM HELST",
+  "core_idea": "Bygg VILKEN APP SOM HELST - från enkla hemsidor till avancerade SaaS-plattformar - av NÄSTAN VEM SOM HELST. AI hanterar det tekniska (databaser, API:er, säkerhet, infrastruktur) så att icke-tekniska användare kan skapa professionella applikationer via konversation.",
+  "ai_democratization": "AI gör avancerad app-utveckling tillgänglig för alla. Detta är både goodwill (folk älskar när AI gör det tekniska) OCH helt avgörande för affären (utan AI skulle detta inte vara möjligt). Citizen developers, business people och entrepreneurs kan bygga det de behöver utan att anställa utvecklare.",
+  "reskilling_for_ai_era": "Vi blir appen för alla som kommer förlorar sina jobb pga AI-automatisering. Precis som AI gör att folk som inte kan skriva kan bli skribenter, gör vi att folk som inte kan utveckla kan bli utvecklare - genom att bara använda vår app. Detta är ett OMSTÄLLNINGSVERKTYG för en AI-driven arbetsvärld där traditionella roller försvinner men nya möjligheter öppnas.",
+  "generational_breadth": "Från kids som bygger saker för Snapchat/TikTok till professionals som bygger business apps. Från 12-åringar som vill imponera på kompisar till 50-åringar som behöver ställa om efter att deras jobb automatiserats. Detta är för ALLA åldrar och alla skills-nivåer.",
+  "why_now": "Svenska företag behöver en europeisk, GDPR-first, universal builder där VEM SOM HELST kan bygga VILKEN APP SOM HELST - inte bara developers. I en värld där AI tar över allt fler jobb behövs verktyg som gör folk EMPLOYABLE igen genom nya skills. Möjlighet att bli först i Sverige med AI-powered democratization OCH omställningsverktyg.",
+  "target_users": [
+    "Folk som förlorar jobb pga AI-automatisering - omställning till 'developer' utan att lära sig koda",
+    "Kids/ungdomar (12-18 år) som vill bygga appar för sociala medier (Snapchat, TikTok, Instagram) och imponera på kompisar",
+    "Icke-tekniska som vill bli 'utvecklare' - precis som AI gör att icke-skribenter kan skriva, gör vi att icke-developers kan utveckla",
+    "Marknadsförare/säljare som vill bygga webbshoppar, kampanjsidor, lead-gen tools utan tech-team",
+    "B2B - företag som vill ha färdiga webbshoppar, booking systems, CRM utan att anställa developers",
+    "Entrepreneurs och grundare som vill validera idéer snabbt utan att anställa utvecklare",
+    "Inhouse-team som saknar utvecklarkapacitet men har verksamhetskunnande och vill bygga egna verktyg",
+    "Svenska företag (SME + Enterprise) som vill demokratisera app-utveckling internt",
+    "Konsulter/byråer som behöver snabb prototypning och leverans av websites, e-commerce, SaaS, business apps",
+    "Organisationer med strikta compliance-krav (offentlig sektor, finans, hälsa) som vill ha EU-hosted lösning",
+    "ALLA - från 12 till 80 år - som har en idé men inte har tekniska skills"
+  ],
+  "application_scope": "Websites, E-commerce, SaaS apps, CRM/ERP, booking systems, forums/communities, database apps, custom integrations - allt med avancerade funktioner (databaser, auth, payments, workflows, etc.)",
+  "value_hypothesis": "AI-powered democratization av app-utveckling: VEM SOM HELST kan bygga VILKEN APP SOM HELST genom att prata med AI. AI hanterar databaser, API:er, säkerhet, infrastruktur - användaren behöver bara beskriva vad de vill ha. Full kod-export (Next.js + FastAPI + databas), svenska/EU-connectors (BankID, Fortnox, Visma), EU-hosting, zero-trust säkerhet från dag 1. För B2B är betallösningar (Stripe, Klarna, Swish) och business-connectors (Fortnox, Visma) KRITISKA - dessa måste fungera out-of-the-box. Resultat: snabb time-to-market UTAN att behöva anställa utvecklare + full äganderätt av koden.",
+  "must_have_outcomes": [
+    "Blueprint-driven codegen: konversation → YAML/JSON spec → fullständig app-kod",
+    "Kod-export: kund kan ta sin genererade kod och köra själv (ingen vendor lock-in)",
+    "Multi-tenant serverless runtime med RBAC/ABAC och RLS",
+    "Minst 8 svenska/EU-connectors (BankID, Fortnox, Visma, Swish, Klarna, Stripe, e-sign, etc.)",
+    "GUI Studio med Blueprint-editor, komponentbibliotek och preview environments",
+    "OpenAPI för plattformens API + CLI för scaffolding och deploy",
+    "GDPR-by-design: DPIA-mallar, audit logs, radering/export endpoints",
+    "Observability: kostnadsmätning per tenant, metrics, tracing",
+    "Recipe-marknadsplats: publicera och återanvänd appmallar",
+    "Enterprise-säkerhet: OIDC, per-tenant KMS, secret vault, SBOM"
+  ],
+  "non_goals": [
+    "Ingen proprietär låsning – kunden äger alltid sin kod",
+    "Ingen 'toy' UI-only builder – detta är full-stack med starka rails",
+    "Inga ToS-brott eller otillåten datainsamling"
+  ],
+  "why_democratization_matters": "Traditionellt har app-utveckling varit reserverat för dem med teknisk utbildning och resurser att anställa utvecklare. Detta skapar ojämlikhet: bra idéer från icke-tekniska personer förblir orealiserade, småföretagare kan inte konkurrera med större aktörer, och kvinnor/underrepresenterade grupper har mindre tillgång till teknisk kompetens. Genom AI-powered democratization kan ALLA - oavsett bakgrund, utbildning eller ekonomiska resurser - realisera sina idéer. Detta är både rättvist OCH bra för innovation och ekonomi.",
+  "competitive_positioning": "En kombination av Bubble + Retool + Webflow + Shopify - fast med AI-powered democratization och svensk/EU-fokus. Fokus på: (1) VEM SOM HELST kan bygga VILKEN APP SOM HELST (AI hanterar det tekniska), (2) kod-export och fullständigt ägarskap, (3) svenska/EU-connectors (BankID, Fortnox, Visma), (4) enterprise-säkerhet från dag 1, (5) LLM-driven conversational interface för icke-tekniska användare, (6) GDPR-by-design, (7) ingen vendor lock-in, (8) demokratisering av innovation och företagande.",
+  "business_model": "SaaS: plattformssäte + build minutes + connector-användning. Enterprise: on-prem deploy + support. Marketplace: provision på recipes och connectors.",
+  "success_criteria": [
+    "Time-to-first-app < 30 minuter",
+    "20+ recipes publicerade inom månad 1",
+    "8 connectors i v1",
+    "p50 API latency < 300ms",
+    "Noll tenant isolation incidents",
+    "Test coverage > 70%"
+  ]
+}

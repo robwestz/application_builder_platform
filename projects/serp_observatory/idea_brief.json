@@ -1,0 +1,8 @@
+{
+  "title": "SERP-Intent API & Observatory (MVP-Lite)",
+  "why_now": "Intent skiftar snabbare än content-cykler; legal/ren datapipeline ger försprång.",
+  "target_users": ["SEO-byråer", "Inhouse-SEO", "Produktteam"],
+  "value_hypothesis": "Billig, robust SERP-intent med arketyp- och subtopic-signal via API + enkel GUI.",
+  "must_have_outcomes": ["OpenAPI med /serp och /intent", "Intent-klassning med confidence", "Arketypmix och required_subtopics", "Export JSON/CSV"],
+  "non_goals": ["Scraping som bryter ToS"]
+}

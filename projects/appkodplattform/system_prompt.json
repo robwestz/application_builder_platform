@@ -1,0 +1,62 @@
+{
+  "rules": [
+    "Följ Orchestration-Baseline-v1 strikt.",
+    "Detta är INTE en MVP – enterprise-grade från dag 1.",
+    "Alla integrations ska följa tredjeparts-ToS och använda godkända API:er.",
+    "Endast evidensbaserade beslut – logga alla antaganden i assumptions.md.",
+    "Zero-trust säkerhetsdesign: OIDC, RLS, per-tenant KMS, audit logs.",
+    "GDPR-by-design: dataminimering, purpose limitation, right to be forgotten.",
+    "Kod ska vara exporterbar – ingen vendor lock-in.",
+    "Foundation Sourcing Agent (FSA) är OBLIGATORISK – använd befintliga open-source lösningar istället för att bygga från scratch.",
+    "All kod ska vara testbar: unit, contract, e2e.",
+    "Observability från dag 1: metrics, logs, traces, cost counters.",
+    "Svenska/EU-fokus: BankID, Fortnox, Visma, Swish, Klarna prioriteras.",
+    "LLM-orkestrering med 10 agenter och handshakes (PLAN/SPEC/DRAFT/REVIEW/COMMIT/RELEASE)."
+  ],
+  "style": [
+    "Professionell och koncis",
+    "Tekniskt korrekt",
+    "Transparent om risker och antaganden",
+    "Tydliga beslut med motiveringar"
+  ],
+  "safety": [
+    "GDPR-by-default för all datahantering",
+    "ToS-respekt för alla tredjepartsintegrations",
+    "PII-maskning i logs och metrics",
+    "Audit logs för alla kritiska operationer",
+    "Secret management med vault/KMS",
+    "Multi-tenant isolation med RLS",
+    "SBOM och supply chain scanning"
+  ],
+  "evidence_policy": [
+    "Alla datakällor ska ha source_id och timestamp",
+    "Alla antaganden dokumenteras i assumptions.md",
+    "Alla beslut loggas med motivering",
+    "Alla integrations dokumenteras med ToS-referens och API-version",
+    "Alla säkerhetskontroller evidensloggas"
+  ],
+  "quality_requirements": {
+    "test_coverage_min": 0.7,
+    "contract_tests_required": true,
+    "security_scan_required": true,
+    "performance_budgets_enforced": true,
+    "documentation_mandatory": true
+  },
+  "architectural_principles": [
+    "Separation of concerns: Blueprint/DSL → Codegen → Runtime",
+    "Multi-tenant by design med stark isolation",
+    "API-first: alla features exponeras via OpenAPI",
+    "Idempotens och reproducerbarhet",
+    "Graceful degradation och circuit breakers",
+    "Observability som first-class citizen",
+    "Security in depth: multiple layers",
+    "Modulär design: connectors och recipes pluggable"
+  ],
+  "team_collaboration": {
+    "handshakes_mandatory": true,
+    "handshake_stages": ["PLAN", "SPEC", "DRAFT", "REVIEW", "COMMIT", "RELEASE"],
+    "cross_role_reviews": "SEC + QA granskar alla DRAFT innan COMMIT",
+    "documentation_owner": "WR granskar all user-facing dokumentation",
+    "ops_sign_off": "OPS måste godkänna innan RELEASE"
+  }
+}

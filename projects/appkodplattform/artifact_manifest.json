@@ -1,0 +1,213 @@
+{
+  "project_id": "APPKOD-PLATFORM-001",
+  "manifest_version": "1.0.0",
+  "note": "Detta är artifact manifest för Phase 0 + Phase 1. Listan kommer att växa massivt i Phase 2-3.",
+  "repos": [
+    {
+      "name": "monorepo",
+      "description": "Huvudrepo för hela plattformen",
+      "structure": {
+        "core-contracts": {
+          "description": "Schema definitions och generated types",
+          "owner": "ARCH+QA",
+          "key_files": [
+            "blueprint.schema.json",
+            "user.schema.json",
+            "tenant.schema.json",
+            "app.schema.json",
+            "deployment.schema.json",
+            "connector.schema.json",
+            "generated/types.ts",
+            "generated/models.py"
+          ]
+        },
+        "pipelines": {
+          "description": "Codegen, normalization, och andra pipelines",
+          "owner": "API+ANALYST",
+          "key_files": [
+            "codegen/parser.ts",
+            "codegen/generator.ts",
+            "codegen/templates/nextjs/*",
+            "codegen/templates/fastapi/*",
+            "codegen/golden-tests/*"
+          ]
+        },
+        "services": {
+          "description": "Backend services",
+          "owner": "API",
+          "subfolders": {
+            "api": {
+              "key_files": [
+                "openapi.yaml",
+                "main.py (eller main.ts)",
+                "auth/*",
+                "policy/*",
+                "routers/*",
+                "models/*",
+                "middleware/*"
+              ]
+            },
+            "runner": {
+              "key_files": [
+                "runtime/*",
+                "isolation/*",
+                "cost-tracking/*"
+              ]
+            },
+            "connectors": {
+              "key_files": [
+                "sdk/base.ts",
+                "bankid/*",
+                "fortnox/*",
+                "stripe/*",
+                "notion/*",
+                "tests/*"
+              ]
+            }
+          }
+        },
+        "ui-app": {
+          "description": "Frontend Next.js application",
+          "owner": "UI",
+          "key_files": [
+            "pages/studio/*",
+            "pages/dashboard/*",
+            "pages/marketplace/*",
+            "components/blueprint-editor/*",
+            "components/component-library/*",
+            "lib/api-client.ts",
+            "public/figma-tokens.json",
+            "storybook/*"
+          ]
+        },
+        "infra": {
+          "description": "Infrastructure-as-code och CI/CD",
+          "owner": "OPS+SEC",
+          "key_files": [
+            "terraform/* (eller pulumi/*)",
+            ".github/workflows/ci.yaml",
+            ".github/workflows/deploy.yaml",
+            "docker-compose.yml",
+            "docker-compose.prod.yml",
+            "secrets/vault-policy.hcl",
+            "observability/otel-config.yaml",
+            "observability/grafana-dashboards/*"
+          ]
+        },
+        "tests": {
+          "description": "Alla testsuites",
+          "owner": "QA",
+          "key_files": [
+            "unit/*",
+            "contract/*",
+            "e2e/*",
+            "performance/*",
+            "evidence-log.json"
+          ]
+        },
+        "docs": {
+          "description": "Dokumentation",
+          "owner": "WR",
+          "key_files": [
+            "README.md",
+            "quickstart.md",
+            "blueprint-syntax.md",
+            "cli-reference.md",
+            "api-reference.md",
+            "studio-guide.md",
+            "connectors/bankid.md",
+            "connectors/fortnox.md",
+            "connectors/stripe.md",
+            "connectors/notion.md",
+            "gtm/landing-page.md",
+            "gtm/pricing.md",
+            "CHANGELOG.md"
+          ]
+        },
+        "foundations": {
+          "description": "FSA golden bases för open-source komponenter",
+          "owner": "FSA",
+          "subfolders": {
+            "auth-sso": ["README.md", "docker-compose.yml", "config/*", "integration/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "policy-abac": ["README.md", "docker-compose.yml", "config/*", "integration/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "db-orm": ["README.md", "docker-compose.yml", "config/*", "integration/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "queues-scheduling": ["README.md", "docker-compose.yml", "config/*", "integration/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "api-framework": ["README.md", "docker-compose.yml", "config/*", "integration/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "ui-designsystem": ["README.md", "storybook/*", "config/*", "integration/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "infra-iac": ["README.md", "examples/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "testing": ["README.md", "examples/*", "SCORECARD.md", "ALTERNATIVES.md"],
+            "security": ["README.md", "config/*", "SCORECARD.md", "ALTERNATIVES.md"]
+          }
+        },
+        "root_files": {
+          "key_files": [
+            "Makefile",
+            "CODEOWNERS",
+            "repo_blueprint.json",
+            "foundation_catalog.json",
+            "assumptions.md",
+            "decision-log.md",
+            "package.json (root)",
+            "pyproject.toml (root)"
+          ]
+        }
+      }
+    }
+  ],
+  "artifact_counts_estimate": {
+    "phase_0": {
+      "contracts": 6,
+      "scripts": 5,
+      "configs": 10,
+      "docs": 8,
+      "golden_bases": 9,
+      "total_files": "~50-70"
+    },
+    "phase_1": {
+      "source_files": "200-300",
+      "test_files": "100-150",
+      "configs": "30-40",
+      "docs": "20-30",
+      "total_files": "~400-600"
+    },
+    "note": "Phase 2-3 kommer att växa till tusentals filer och hundratusentals rader kod."
+  },
+  "external_dependencies": {
+    "note": "Dessa hanteras av FSA och foundation_catalog.json",
+    "categories": [
+      "Auth/SSO (ex: Keycloak, Ory)",
+      "Policy/ABAC (ex: OpenFGA, OPA)",
+      "Database (Postgres + ORM)",
+      "Queues (ex: BullMQ, Temporal)",
+      "API Framework (FastAPI/NestJS)",
+      "UI Components (ex: Radix, shadcn/ui)",
+      "Infra (Terraform, GitHub Actions)",
+      "Testing (Playwright, Pact, Jest/Vitest, pytest)",
+      "Security (Trivy, Syft/Grype)"
+    ]
+  },
+  "build_artifacts": {
+    "docker_images": [
+      "api-server",
+      "runner",
+      "ui-app",
+      "connectors (per connector?)",
+      "codegen-worker"
+    ],
+    "packages": [
+      "@appkod/contracts",
+      "@appkod/cli",
+      "@appkod/sdk-js",
+      "appkod-sdk-py"
+    ]
+  },
+  "deployment_artifacts": {
+    "environments": ["local", "dev", "staging", "production"],
+    "per_environment": [
+      "terraform state",
+      "docker-compose override",
+      "secrets (in vault)",
+      "config/*.{env}.yaml"
+    ]
+  }
+}

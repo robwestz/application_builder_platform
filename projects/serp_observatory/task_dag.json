@@ -1,0 +1,81 @@
+{
+  "project_id": "SERP-OBS-001",
+  "tasks": [
+    {
+      "id": "T0-Scaffold",
+      "objective": "Monorepo + contracts + CI enligt Orchestration-Baseline-v1",
+      "owner_role": "ARCH",
+      "handshake": ["PLAN", "COMMIT"]
+    },
+    {
+      "id": "T1-Contracts",
+      "objective": "Lägg in serp_research_extension + intent_extension + provider_contract; codegen",
+      "owner_role": "ARCH",
+      "depends_on": ["T0-Scaffold"],
+      "handshake": ["PLAN", "SPEC", "COMMIT"]
+    },
+    {
+      "id": "T2-ProviderLayer",
+      "objective": "Abstrahera provider + mock + rate-limit; README med legala krav",
+      "owner_role": "FETCH",
+      "depends_on": ["T1-Contracts"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"]
+    },
+    {
+      "id": "T3-Normalizer",
+      "objective": "Normalisera provider-output till serp_research_extension",
+      "owner_role": "FETCH",
+      "depends_on": ["T2-ProviderLayer"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"]
+    },
+    {
+      "id": "T4-IntentSynth",
+      "objective": "Intent/arketypmix/required_subtopics + confidence",
+      "owner_role": "ANALYST",
+      "depends_on": ["T3-Normalizer"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"]
+    },
+    {
+      "id": "T5-API",
+      "objective": "OpenAPI + endpoints /serp och /intent",
+      "owner_role": "API",
+      "depends_on": ["T3-Normalizer", "T4-IntentSynth"],
+      "handshake": ["PLAN", "SPEC", "DRAFT", "REVIEW", "COMMIT"]
+    },
+    {
+      "id": "T6-UI",
+      "objective": "Intent Observatory GUI (trend, arketypmix, export)",
+      "owner_role": "UI",
+      "depends_on": ["T5-API"],
+      "handshake": ["PLAN", "DRAFT", "REVIEW", "COMMIT"]
+    },
+    {
+      "id": "T7-QA",
+      "objective": "Kontrakts-, e2e-, säkerhetstester + evidence-log",
+      "owner_role": "QA",
+      "depends_on": ["T5-API", "T6-UI"],
+      "handshake": ["PLAN", "COMMIT"]
+    },
+    {
+      "id": "T8-SEC",
+      "objective": "GDPR/ToS genomlysning, DPIA-mall, secrets-policy",
+      "owner_role": "SEC",
+      "depends_on": ["T5-API", "T6-UI"],
+      "handshake": ["PLAN", "COMMIT"]
+    },
+    {
+      "id": "T9-OPS",
+      "objective": "Docker, Compose, CI/CD, logs/metrics, cost-meters",
+      "owner_role": "OPS",
+      "depends_on": ["T7-QA", "T8-SEC"],
+      "handshake": ["PLAN", "RELEASE"]
+    },
+    {
+      "id": "T10-DOCS",
+      "objective": "README, quickstart, pricing-notes, API-exempel",
+      "owner_role": "WR",
+      "depends_on": ["T5-API", "T6-UI"],
+      "handshake": ["PLAN", "COMMIT"]
+    }
+  ]
+}
