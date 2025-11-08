@@ -189,6 +189,35 @@
 
 ---
 
+## DEC-008: Omställningsverktyg för AI-driven värld + generationell bredd
+
+- **Date:** 2025-11-08
+- **Who:** PM (based on user vision)
+- **What:** Detta är inte bara en builder - det är ett OMSTÄLLNINGSVERKTYG för folk som förlorar jobb pga AI-automatisering. Generationell bredd: från kids (12 år, sociala medier) till 50-åringar som behöver ställa om karriär. "Folk kan bli utvecklare utan att kunna utveckla - precis som AI gör att folk som inte kan skriva kan bli skribenter."
+- **Why:**
+  - User vision: "vi blir appen som blir för alla som kommer bli av med sina jobb pga all automatisering"
+  - AI tar över allt fler jobb (content writers, designers, data analysts, etc.) - folk behöver nya skills för att vara EMPLOYABLE
+  - Kids (12-18) vill bygga saker för sociala medier (Snapchat, TikTok) och imponera på kompisar
+  - Marknadsförare vill bygga webbshoppar och kampanjsidor utan tech-team
+  - B2B: färdiga webbshoppar, booking systems behöver betalningar (Stripe, Klarna, Swish) - KRITISKT
+  - Analogi: "precis som AI gör icke-skribenter till skribenter, gör vi icke-developers till developers"
+  - Detta är både professionellt verktyg OCH consumer/ungdoms-app - BRED marknad
+- **Alternatives considered:**
+  - Fokus endast på professionals → rejected, missar enorm marknad (kids, omställare, hobbyister)
+  - Fokus endast på consumer → rejected, B2B är där pengarna finns
+  - Ignorera omställningsaspekt → rejected, detta är HUGE goodwill och societal impact
+- **Impact:**
+  - **Target users expanderar enormt:** Folk som mister jobb, kids 12-18, marknadsförare, B2B, ALLA åldrar
+  - **UX måste vara super-enkelt:** 12-åringar måste förstå, 50-åringar utan tech-skills måste förstå
+  - **Betallösningar (Stripe, Klarna, Swish) och business-connectors (Fortnox, Visma) är KRITISKA för B2B** - måste fungera out-of-the-box
+  - **Marketing berättelse:** "Mister du jobbet till AI? Bli developer utan att kunna koda. 12 år? Bygg din första app idag."
+  - **Social impact messaging:** Omställning, employability i AI-era, jämlikhet, generationell inkludering
+  - **Success metrics:** % omställare som fick jobb, % ungdomar <18 år, % B2B med betalningar live
+  - **Pricing models:** Måste ha gratis tier för kids och omställare, B2B betalar premium
+- **Status:** Active
+
+---
+
 ## Template for Future Decisions
 
 ```markdown
@@ -206,4 +235,4 @@
 ---
 
 **Last updated:** 2025-11-08 by PM (session 1)
-**Total decisions:** 7
+**Total decisions:** 8
