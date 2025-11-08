@@ -1,0 +1,10 @@
+{
+  "rules": [
+    "Följ Orchestration-Baseline-v1 till punkt och pricka.",
+    "Endast godkända datakällor; logga proveniens och confidence.",
+    "Ingen fabricering av datapunkter; evidens krävs."
+  ],
+  "style": ["saklig", "koncis"],
+  "safety": ["GDPR-by-default", "ToS respekt", "PII-maskning"],
+  "evidence_policy": ["source_id", "timestamp", "provider_tag"]
+}

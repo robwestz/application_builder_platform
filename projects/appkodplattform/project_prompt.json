@@ -1,0 +1,134 @@
+{
+  "title": "Baslinje – Svensk Appkodplattform (Builder, Code-Export, EU-Grade)",
+  "ambition_note": "Detta är inte en MVP. Målet är att bli först i Sverige i denna klass och vara mer avancerade än befintliga 'conversational builders'. Enterprise-grade säkerhet, prestanda och orkestrering från dag 1.",
+  "scope": [
+    "Conversational Builder som genererar fullständig appkod (frontend + backend) med möjlig kodexport (Next.js/FastAPI som minsta startprofil).",
+    "Blueprint/DSL: deklarativ specifikation (YAML/JSON) för datamodeller, workflows, behörighet, connectors, UI-komponenter, testfall och driftspolicy.",
+    "Serverless/Runner-lager: körning av genererade appar i multi-tenant miljö (med RBAC/ABAC och RLS) samt kodexport för kundens egna miljöer.",
+    "Connector-SDK (EU/Sverige-fokus): BankID, Fortnox, Visma, Swish, Klarna, Stripe, Shopify, Woo, Notion, Google Sheets, e-sign (ex. Scrive/Assently), e-post/SMS-gateways.",
+    "AuthN/AuthZ: OIDC/OAuth2, organizations/teams, roll- och attributbaserad access samt OpenFGA-/OPA-kompatibel policy.",
+    "Zero-Trust säkerhetsdesign: per-tenant nycklar (KMS), audit logs, secret vault, allowlistade egress-regler.",
+    "Observability-by-default: request tracing, structured logs, metrics, kostnadsmätare per tenant, SBOM för supply chain.",
+    "Compliance-by-design: GDPR-first, DPIA-mallar, datalivscykel, dataminimering, radering/export endpoints.",
+    "Test & kvalitetsram: kontraktstester, golden tests, e2e, regressionspaket; auto-generering av tester från Blueprint.",
+    "LLM-orkestrering: 10-agenters pipeline (PM/ARCH/API/UI/OPS/QA/SEC/ANALYST/WR/FSA) med handshakes (PLAN/SPEC/DRAFT/REVIEW/COMMIT/RELEASE).",
+    "GUI: app-studio med realtidsvalidering av Blueprint, komponentbibliotek, Figma tokens → UI, preview environments, recipe-galleri.",
+    "Marknadsplats: publicera/återanvända 'recipes' (appmallar) och connectors med versionering och säkerhetsgranskning.",
+    "CI/CD-integration: git push → bygg → skanna → deploy; reproducible builds; migrations-hantering; canary + rollback."
+  ],
+  "non_goals": [
+    "Ingen kringgång av tredjeparts-ToS eller otillåten scraping.",
+    "Ingen proprietär låsning: kund ska alltid kunna exportera kod och köra själv.",
+    "Ingen förenklad 'toy' UI-only builder; detta är en fullkodande plattform med starka rails."
+  ],
+  "constraints": [
+    "EU-hosting som standard, datalagring och processering inom EU.",
+    "Hög baseline-säkerhet: OIDC, RLS, minst TLS1.2+, mTLS-stöd internt, per-tenant KMS-nycklar.",
+    "Kostnadsräls: LLM-budget/tenant/sprint, connector-rate limits, samlad kostnadsrapportering.",
+    "Design för öppenhet: tydlig SBOM, licenskompatibilitet och tredjepartsavtal dokumenteras.",
+    "All integration sker via godkända API:er eller kundens egna licenser/nycklar."
+  ],
+  "deliverables": [
+    "Monorepo scaffold: core-contracts, pipelines, services-api, ui-app, infra, tests, docs.",
+    "Blueprint/DSL-specifikation + parser + validerare.",
+    "Codegen-motor: Blueprint → Next.js/FastAPI (utbyggbart till andra stackar).",
+    "Serverless/Runner-lager med multi-tenant, RBAC/ABAC, RLS och audit.",
+    "Connector-SDK med minst 8 svenska/EU-relevanta connectors i v1.",
+    "Policy- och behörighetsmotor (OPA/OpenFGA-kompatibel) med GUI för regler.",
+    "OpenAPI för plattformens API + CLI (gom/ctl) för scaffolding, builds och deploy.",
+    "GUI Studio: editor för Blueprint, koppling till Figma tokens, storybook, komponentkatalog.",
+    "Test- och compliance-paket: kontrakt/e2e, DPIA-mallar, evidence-logging.",
+    "Observability: loggar/metrics/traces + kostnadsmätning per tenant + usage-rapporter.",
+    "Dokumentation och GTM-material (pricing, Tjänstekatalog, Onboarding-guides)."
+  ],
+  "success_metrics": {
+    "platform_slo": {
+      "api_latency_p50_ms": 300,
+      "api_latency_p95_ms": 900,
+      "builder_to_preview_time_p90_s": 60,
+      "export_build_time_p90_s": 180,
+      "tenant_isolation_incidents": 0
+    },
+    "quality": {
+      "test_coverage_min": 0.7,
+      "contract_tests_pass_rate": 1.0,
+      "security_findings_blocking": 0
+    },
+    "adoption": {
+      "time_to_first_app_min": 30,
+      "recipes_published_month1": 20,
+      "connectors_v1": 8
+    }
+  },
+  "security_privacy": {
+    "gdpr": ["purpose_limitation", "data_minimization", "right_to_be_forgotten"],
+    "privacy_by_design": true,
+    "tenant_isolation": ["RLS", "per_tenant_keys"],
+    "audit": ["who", "what", "when", "where", "why"],
+    "sbom": "CycloneDX eller likvärdigt",
+    "supply_chain_scans": ["license_check", "vuln_scan", "sigstore_verification"]
+  },
+  "automation_core": {
+    "scaffold": ["docker-compose", "Makefile", "repo_blueprint.json", "CODEOWNERS"],
+    "codegen": ["*.schema.json -> TS & Pydantic", "pre-commit hooks", "CLI för blueprint->kod"],
+    "ci_pipelines": ["lint", "unit", "contract", "build", "e2e", "release"],
+    "security_gates": ["secret_scan", "license_scan", "dependency_vuln"],
+    "observability_boot": ["opentelemetry", "metrics", "cost_counters"]
+  },
+  "roles_must_have": [
+    "PM",
+    "ARCH",
+    "API",
+    "UI",
+    "OPS",
+    "QA",
+    "SEC",
+    "WR",
+    "ANALYST",
+    "FSA"
+  ],
+  "foundation_sourcing_agent": {
+    "enabled": true,
+    "role_name": "FSA (Foundation Sourcing Agent)",
+    "mandate": [
+      "Kartlägga, välja och driftsätta open-source grund för auth, policy, köer, schema, med licenskontroll.",
+      "Sätta upp 'golden baser': Next.js/Designsystem, FastAPI/Policy, Postgres/RLS, Eventing/Queue.",
+      "Hålla en katalog med versioner, livscykelstatus, ersättningsplaner och säkerhetsnotiser.",
+      "Driva scorecard (mognad, community, bus-factor, CVE-historik, performance)."
+    ],
+    "catalog_areas": [
+      "Auth/SSO (OIDC, Identity Server, Ory/Keycloak)",
+      "Policy/ABAC (OpenFGA, OPA/Cedar)",
+      "DB/ORM (Postgres, Prisma/SQLModel/Drizzle)",
+      "Queues/Scheduling (Temporal, Celery/RQ, BullMQ, Arq/NATS/Kafka)",
+      "API/Framework (FastAPI/NestJS)",
+      "UI/Designsystem (Storybook, Radix, Figma tokens)",
+      "Infra (Terraform, ArgoCD/GitHub Actions)",
+      "Testing (Playwright/Cypress, Pact/Contract)",
+      "Security (Trivy, Syft/Grype, Sigstore)"
+    ],
+    "adoption_scorecard": {
+      "weights": {
+        "security": 0.3,
+        "stability_activity": 0.25,
+        "performance": 0.15,
+        "integration_fit": 0.15,
+        "license_clarity": 0.1,
+        "community_docs": 0.05
+      },
+      "min_score_to_adopt": 0.6
+    }
+  },
+  "phased_plan": {
+    "phase_0": "Scaffold + Contracts + CLI + minimal blueprint parser (ingen MVP-funktionalitet förenklas bort, endast start på rails).",
+    "phase_1": "Codegen v1 + Runner + 4 connectors + Auth/Policy + GUI Studio beta.",
+    "phase_2": "Observability + Market + 8 connectors total + Test/Compliance pack + SBOM.",
+    "phase_3": "Enterprise hårdning (SSO, org-scopes, cost controls), recipes 20+, export pipelines."
+  },
+  "risk_controls": {
+    "legal_tos": "Alla tredjeparts-API används med licens/avtal; inga ToS-brott.",
+    "performance_budgets": "Fail build om SLO-regression.",
+    "security_blockers": "Release stoppas vid blockerande findings.",
+    "rollback": "Automatisk rollback vid misslyckad canary."
+  }
+}

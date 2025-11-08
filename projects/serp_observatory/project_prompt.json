@@ -1,0 +1,27 @@
+{
+  "scope": [
+    "Provider-abstraktion med mock",
+    "Normalizer -> serp_research_extension",
+    "Intent-syntes (dominant + sekundär + arketypmix + subtopics)",
+    "API: /serp, /intent",
+    "GUI: trend, arketypmix, export"
+  ],
+  "constraints": [
+    "Kostnadstak per 1000 queries",
+    "Multi-tenant med RLS",
+    "EU-hosting preferens"
+  ],
+  "deliverables": [
+    "openapi.yaml",
+    "ui/pages/intent-observatory/*",
+    "pipelines/normalize/*",
+    "pipelines/intent/*",
+    "tests/*",
+    "docs/README.md"
+  ],
+  "success_metrics": [
+    "p50 latency < 1200ms",
+    "intent_accuracy >= definierad tröskel (manuell provgranskning)",
+    "cost/query under budget"
+  ]
+}

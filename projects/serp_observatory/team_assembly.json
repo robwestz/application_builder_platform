@@ -1,0 +1,15 @@
+{
+  "project_id": "SERP-OBS-001",
+  "agents": [
+    {"slot": 1, "role": "PM"},
+    {"slot": 2, "role": "ARCH"},
+    {"slot": 3, "role": "FETCH"},
+    {"slot": 4, "role": "ANALYST"},
+    {"slot": 5, "role": "API"},
+    {"slot": 6, "role": "UI"},
+    {"slot": 7, "role": "WR"},
+    {"slot": 8, "role": "QA"},
+    {"slot": 9, "role": "OPS"},
+    {"slot": 10, "role": "SEC"}
+  ]
+}

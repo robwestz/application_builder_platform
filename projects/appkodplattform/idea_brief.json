@@ -1,0 +1,38 @@
+{
+  "title": "Svensk Appkodplattform – Enterprise-grade Builder & Code Export",
+  "why_now": "Svenska företag behöver en europeisk, GDPR-first, no-code/low-code plattform som inte är beroende av amerikanska molntjänster. Möjlighet att bli först i Sverige med enterprise-klass conversational builder.",
+  "target_users": [
+    "Svenska företag (SME + Enterprise) som vill snabba upp app-utveckling",
+    "Konsulter/byråer som behöver snabb prototypning och leverans",
+    "Inhouse-team som saknar utvecklarkapacitet men har verksamhetskunnande",
+    "Organisationer med strikta compliance-krav (offentlig sektor, finans, hälsa)"
+  ],
+  "value_hypothesis": "En conversational builder som genererar fullständig, exporterbar kod (Next.js + FastAPI) med inbyggda svenska/EU-connectors (BankID, Fortnox, Visma, etc.), EU-hosting, och zero-trust säkerhet från dag 1. Kunden får både snabb time-to-market OCH full ägande av koden.",
+  "must_have_outcomes": [
+    "Blueprint-driven codegen: konversation → YAML/JSON spec → fullständig app-kod",
+    "Kod-export: kund kan ta sin genererade kod och köra själv (ingen vendor lock-in)",
+    "Multi-tenant serverless runtime med RBAC/ABAC och RLS",
+    "Minst 8 svenska/EU-connectors (BankID, Fortnox, Visma, Swish, Klarna, Stripe, e-sign, etc.)",
+    "GUI Studio med Blueprint-editor, komponentbibliotek och preview environments",
+    "OpenAPI för plattformens API + CLI för scaffolding och deploy",
+    "GDPR-by-design: DPIA-mallar, audit logs, radering/export endpoints",
+    "Observability: kostnadsmätning per tenant, metrics, tracing",
+    "Recipe-marknadsplats: publicera och återanvänd appmallar",
+    "Enterprise-säkerhet: OIDC, per-tenant KMS, secret vault, SBOM"
+  ],
+  "non_goals": [
+    "Ingen proprietär låsning – kunden äger alltid sin kod",
+    "Ingen 'toy' UI-only builder – detta är full-stack med starka rails",
+    "Inga ToS-brott eller otillåten datainsamling"
+  ],
+  "competitive_positioning": "Mer avancerad än Base44-typen av plattformar. Fokus på: (1) kod-export och ägarskap, (2) svenska/EU-connectors, (3) enterprise-säkerhet från dag 1, (4) LLM-driven conversational interface, (5) GDPR-by-design.",
+  "business_model": "SaaS: plattformssäte + build minutes + connector-användning. Enterprise: on-prem deploy + support. Marketplace: provision på recipes och connectors.",
+  "success_criteria": [
+    "Time-to-first-app < 30 minuter",
+    "20+ recipes publicerade inom månad 1",
+    "8 connectors i v1",
+    "p50 API latency < 300ms",
+    "Noll tenant isolation incidents",
+    "Test coverage > 70%"
+  ]
+}

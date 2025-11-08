@@ -1,0 +1,26 @@
+{
+  "project_id": "SERP-OBS-001",
+  "repos": [
+    {
+      "name": "monorepo",
+      "folders": [
+        "contracts",
+        "pipelines",
+        "services/api",
+        "ui",
+        "infra",
+        "tests",
+        "docs"
+      ],
+      "files": [
+        "contracts/serp_research_extension.schema.json",
+        "contracts/intent_extension.schema.json",
+        "services/api/openapi.yaml",
+        "ui/pages/intent-observatory/index.tsx",
+        "tests/contract_validation.test.ts",
+        "infra/.github/workflows/ci.yaml",
+        "docs/README.md"
+      ]
+    }
+  ]
+}

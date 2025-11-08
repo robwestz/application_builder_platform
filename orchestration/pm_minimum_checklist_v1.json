@@ -1,0 +1,22 @@
+{
+  "id": "PM-Minimum-Checklist-v1",
+  "required_inputs": ["idea_brief.json", "system_prompt.json", "project_prompt.json"],
+  "team_assembly_required": true,
+  "task_dag_required": true,
+  "artifacts_due_in_sprint0": [
+    "contracts/*.schema.json",
+    "openapi.yaml (om API)",
+    "docs/README.md",
+    "tests/contract_validation.*",
+    "infra/.github/workflows/*",
+    "runbook.json"
+  ],
+  "status_reporting": {
+    "cadence": "daglig kortrapport + veckovis demo",
+    "kpis": ["lead_time", "deployment_frequency", "change_failure_rate", "mean_time_to_recover"]
+  },
+  "budget_controls": {
+    "llm_token_budget_per_sprint": "definieras av PM",
+    "provider_cost_counters": true
+  }
+}

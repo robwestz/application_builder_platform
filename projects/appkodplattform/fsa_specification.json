@@ -1,0 +1,328 @@
+{
+  "role": "FSA (Foundation Sourcing Agent)",
+  "mandate": "Kartlägga, utvärdera, välja och driftsätta open-source komponenter för plattformens grund. Förhindra 'reinvent the wheel' och säkerställ licens-, säkerhets- och kvalitetskrav.",
+  "responsibilities": [
+    "Kartläggning: identifiera kandidater för varje catalog_area",
+    "Utvärdering: köra adoption_scorecard på varje kandidat",
+    "Rekommendation: välja top-kandidat baserat på scorecard och project constraints",
+    "Driftsättning: sätta upp golden base (exempel-config, docker-compose, integration patterns)",
+    "Katalog: underhålla foundation_catalog.json med versioner, livscykel och säkerhetsnotiser",
+    "Monitoring: övervaka CVE, uppdateringar, deprecation notices för adopterade komponenter",
+    "Succession planning: hålla backup-alternativ redo om primär komponent misslyckas"
+  ],
+  "catalog_areas": [
+    {
+      "area": "Auth/SSO",
+      "description": "OIDC/OAuth2 identity provider för multi-tenant",
+      "requirements": [
+        "OIDC/OAuth2 compliant",
+        "Multi-tenant stöd (organizations/teams)",
+        "Social login (Google, Microsoft, etc.)",
+        "MFA support",
+        "Admin UI för user/org management",
+        "Audit logging"
+      ],
+      "candidates": [
+        "Ory Kratos + Hydra",
+        "Keycloak",
+        "Supertokens",
+        "Authentik",
+        "Zitadel"
+      ]
+    },
+    {
+      "area": "Policy/ABAC",
+      "description": "Fine-grained authorization och policy engine",
+      "requirements": [
+        "RBAC + ABAC support",
+        "Policy-as-code (YAML/Rego/Cedar)",
+        "API för runtime policy checks",
+        "Audit trail för policy decisions",
+        "GUI för policy management (önskvärt)",
+        "Performance: <10ms p95 för policy check"
+      ],
+      "candidates": [
+        "OpenFGA (Zanzibar-inspired)",
+        "OPA (Open Policy Agent)",
+        "AWS Cedar (open-source)",
+        "Oso",
+        "Casbin"
+      ]
+    },
+    {
+      "area": "DB/ORM",
+      "description": "Database och ORM för multi-tenant med RLS",
+      "requirements": [
+        "Postgres med Row-Level Security (RLS)",
+        "Type-safe ORM (TypeScript + Python)",
+        "Migration tooling",
+        "Connection pooling",
+        "Multi-tenant patterns (schema-per-tenant eller shared schema med RLS)",
+        "Audit logging support"
+      ],
+      "candidates": [
+        "Postgres + Prisma (TS) + SQLModel (Python)",
+        "Postgres + Drizzle (TS) + SQLAlchemy (Python)",
+        "Supabase (managed Postgres + RLS + Auth)",
+        "Planetscale (serverless MySQL, men ej Postgres)"
+      ]
+    },
+    {
+      "area": "Queues/Scheduling",
+      "description": "Asynkron jobbkö och workflow orchestration",
+      "requirements": [
+        "Durable queues",
+        "Retry logic med exponential backoff",
+        "Cron-like scheduling",
+        "Workflow orchestration (multi-step flows)",
+        "Observability: metrics och tracing",
+        "Multi-tenant isolation"
+      ],
+      "candidates": [
+        "Temporal (workflow engine)",
+        "BullMQ (Redis-based, Node.js)",
+        "Celery (Python) + RQ (Python)",
+        "Arq (Python, Redis-based)",
+        "NATS JetStream",
+        "Kafka (heavy, för event streaming)"
+      ]
+    },
+    {
+      "area": "API/Framework",
+      "description": "Backend API framework för services",
+      "requirements": [
+        "OpenAPI auto-generation",
+        "Type safety",
+        "Async support",
+        "Middleware för auth, logging, tracing",
+        "Performance: låg latency overhead",
+        "Community och ekosystem"
+      ],
+      "candidates": [
+        "FastAPI (Python)",
+        "NestJS (TypeScript)",
+        "Hono (TypeScript, edge-first)",
+        "tRPC (TypeScript, type-safe RPC)"
+      ]
+    },
+    {
+      "area": "UI/Designsystem",
+      "description": "Frontend UI-komponenter och designsystem",
+      "requirements": [
+        "React-based",
+        "Accessibility (WCAG 2.1 AA)",
+        "Theming (Figma tokens support)",
+        "Storybook integration",
+        "TypeScript support",
+        "Headless eller styled variants"
+      ],
+      "candidates": [
+        "Radix UI (headless primitives)",
+        "shadcn/ui (Radix + Tailwind)",
+        "Chakra UI",
+        "Mantine",
+        "Material UI (MUI)",
+        "Ant Design"
+      ]
+    },
+    {
+      "area": "Infra",
+      "description": "Infrastructure-as-code och deployment",
+      "requirements": [
+        "Multi-cloud support (AWS, GCP, Azure)",
+        "GitOps workflow",
+        "Reproducible deploys",
+        "Secret management integration",
+        "Cost estimation"
+      ],
+      "candidates": [
+        "Terraform",
+        "Pulumi",
+        "AWS CDK",
+        "ArgoCD (GitOps för Kubernetes)",
+        "GitHub Actions (CI/CD)",
+        "GitLab CI"
+      ]
+    },
+    {
+      "area": "Testing",
+      "description": "Test frameworks för unit, contract, e2e",
+      "requirements": [
+        "Unit: Jest/Vitest (TS), pytest (Python)",
+        "Contract: Pact eller likvärdigt",
+        "E2E: Playwright eller Cypress",
+        "Performance: k6 eller Artillery",
+        "Coverage reporting",
+        "CI/CD integration"
+      ],
+      "candidates": [
+        "Playwright (e2e, multi-browser)",
+        "Cypress (e2e)",
+        "Pact (contract testing)",
+        "Vitest (unit, Vite-native)",
+        "Jest (unit)",
+        "pytest (Python unit)"
+      ]
+    },
+    {
+      "area": "Security",
+      "description": "Security scanning och supply chain",
+      "requirements": [
+        "SBOM generation (CycloneDX/SPDX)",
+        "Vulnerability scanning (CVE)",
+        "License compliance",
+        "Secret scanning",
+        "Container scanning",
+        "Sigstore för artifact signing (önskvärt)"
+      ],
+      "candidates": [
+        "Trivy (vuln + license + secret scanning)",
+        "Syft + Grype (SBOM + vuln)",
+        "Snyk (commercial, men har free tier)",
+        "OWASP Dependency-Check",
+        "Sigstore (cosign för signing)",
+        "TruffleHog (secret scanning)"
+      ]
+    }
+  ],
+  "adoption_scorecard": {
+    "description": "Varje kandidat utvärderas på en skala 0-1 för varje dimension. Total score = weighted sum.",
+    "dimensions": {
+      "security": {
+        "weight": 0.3,
+        "criteria": [
+          "CVE-historik (färre/snabbare patches = högre)",
+          "Security audit (extern audit = högre)",
+          "Dependency health (färre transitive deps = högre)",
+          "Secret handling (vault-aware, no hardcoded secrets)",
+          "SBOM support"
+        ]
+      },
+      "stability_activity": {
+        "weight": 0.25,
+        "criteria": [
+          "Release cadence (regelbundet utan breaking changes = högre)",
+          "Community activity (commits, issues, PRs senaste 6 mån)",
+          "Maintainer count (fler = lägre bus-factor)",
+          "Deprecation risk (aktiv roadmap = lägre risk)",
+          "Backward compatibility"
+        ]
+      },
+      "performance": {
+        "weight": 0.15,
+        "criteria": [
+          "Latency (p50, p95)",
+          "Throughput (requests/sec, jobs/sec)",
+          "Resource usage (memory, CPU)",
+          "Scalability (horizontal scaling support)",
+          "Benchmarks vs alternatives"
+        ]
+      },
+      "integration_fit": {
+        "weight": 0.15,
+        "criteria": [
+          "TypeScript + Python support (eller enkel interop)",
+          "OpenAPI/gRPC support",
+          "Multi-tenant patterns",
+          "Cloud-agnostic vs cloud-specific",
+          "Docker/Kubernetes ready"
+        ]
+      },
+      "license_clarity": {
+        "weight": 0.1,
+        "criteria": [
+          "OSI-approved license (MIT, Apache 2.0, BSD = högre)",
+          "No dual-license commercial trap",
+          "Clear contribution guidelines (CLA/DCO)",
+          "No patent trolls or lawsuit history"
+        ]
+      },
+      "community_docs": {
+        "weight": 0.05,
+        "criteria": [
+          "Dokumentationskvalitet (tutorials, API docs, examples)",
+          "Community support (Discord, Slack, Forum)",
+          "Stack Overflow activity",
+          "Video/course availability"
+        ]
+      }
+    },
+    "min_score_to_adopt": 0.6,
+    "scoring_process": [
+      "1. För varje kandidat, betygsätt 0-1 för varje dimension",
+      "2. Beräkna weighted score = sum(dimension_score * weight)",
+      "3. Om total_score >= 0.6, kandidaten är godkänd",
+      "4. Välj top-kandidat per area baserat på score + project-specific fit"
+    ]
+  },
+  "golden_base_template": {
+    "description": "För varje vald komponent skapar FSA en 'golden base' – en referensimplementation med config, docker-compose, och integration patterns.",
+    "structure": {
+      "path": "foundations/{area}/",
+      "files": [
+        "README.md (overview, why chosen, scorecard results)",
+        "docker-compose.yml (local dev setup)",
+        "config/ (example configs: dev, staging, prod)",
+        "integration/ (example integration code för TS och Python)",
+        "tests/ (basic contract/integration tests)",
+        "SCORECARD.md (detailed scoring för alla dimensioner)",
+        "ALTERNATIVES.md (backup alternatives om primär failar)",
+        "SECURITY.md (säkerhetsöverväganden, CVE monitoring)"
+      ]
+    }
+  },
+  "foundation_catalog_schema": {
+    "description": "FSA underhåller foundation_catalog.json med alla adopterade komponenter.",
+    "schema": {
+      "area": "string (ex: Auth/SSO)",
+      "chosen_component": "string (ex: Keycloak)",
+      "version": "string (ex: 23.0.1)",
+      "adoption_date": "ISO date",
+      "scorecard_total": "float (0-1)",
+      "scorecard_breakdown": {
+        "security": "float",
+        "stability_activity": "float",
+        "performance": "float",
+        "integration_fit": "float",
+        "license_clarity": "float",
+        "community_docs": "float"
+      },
+      "license": "string (ex: Apache 2.0)",
+      "repository": "URL",
+      "documentation": "URL",
+      "golden_base_path": "string (ex: foundations/auth-sso/)",
+      "status": "enum [active, deprecated, sunset]",
+      "cve_monitoring": {
+        "last_checked": "ISO date",
+        "known_issues": "array of CVE IDs",
+        "remediation_plan": "string or null"
+      },
+      "succession_plan": {
+        "backup_alternatives": ["array of component names"],
+        "trigger_conditions": "string (ex: 'if 2+ critical CVEs unpatched > 90 days')"
+      },
+      "notes": "string (project-specific considerations)"
+    }
+  },
+  "deliverables": [
+    "foundation_catalog.json (initial version i Sprint 0)",
+    "foundations/{area}/ för varje catalog_area (golden bases)",
+    "SCORECARD.md för varje chosen component",
+    "ALTERNATIVES.md för varje area",
+    "CVE monitoring dashboard eller script (för kontinuerlig övervakning)"
+  ],
+  "success_metrics": {
+    "coverage": "alla 9 catalog_areas har vald komponent med golden base",
+    "score_quality": "alla valda komponenter har total_score >= 0.6",
+    "time_to_golden_base": "< 5 dagar per area (paralleliserat arbete)",
+    "cve_response_time": "< 48h för kritiska CVEs",
+    "adoption_rate": "andra team använder golden bases utan FSA-blockers"
+  },
+  "risks_mitigations": {
+    "risk_license_trap": "Mitigation: endast OSI-approved licenses, pre-check dual-license models",
+    "risk_bus_factor": "Mitigation: välj komponenter med 3+ active maintainers, ha backup alternatives",
+    "risk_performance_regression": "Mitigation: benchmark innan adoption, continuous performance testing",
+    "risk_security_debt": "Mitigation: CVE monitoring + automated Dependabot/Renovate",
+    "risk_integration_hell": "Mitigation: golden base med proven integration patterns"
+  }
+}

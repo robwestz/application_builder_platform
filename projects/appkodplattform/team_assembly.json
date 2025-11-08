@@ -1,0 +1,236 @@
+{
+  "project_id": "APPKOD-PLATFORM-001",
+  "project_name": "Svensk Appkodplattform – Enterprise-grade Builder & Code Export",
+  "team_size": 10,
+  "note": "10-agenter orkestreringsmodell enligt Orchestration-Baseline-v1. FSA är obligatorisk för detta projekt.",
+  "agents": [
+    {
+      "slot": 1,
+      "role": "PM",
+      "name": "Project Manager",
+      "primary_responsibilities": [
+        "Mål, prioritering, budget, beslutslogg",
+        "Sprint-planering och daily stand-ups",
+        "Stakeholder kommunikation",
+        "Risk och antagandehantering (assumptions.md)",
+        "KPI tracking (lead_time, deployment_frequency, etc.)",
+        "LLM token budget och cost controls"
+      ],
+      "key_deliverables": [
+        "Sprint plans",
+        "Decision log",
+        "assumptions.md",
+        "Budget reports",
+        "Risk register"
+      ]
+    },
+    {
+      "slot": 2,
+      "role": "ARCH",
+      "name": "System Architect",
+      "primary_responsibilities": [
+        "Systemdesign, kontrakt, repo-struktur",
+        "Blueprint/DSL specifikation",
+        "API design (OpenAPI)",
+        "Multi-tenant arkitektur",
+        "Datamodeller och schema",
+        "Integration patterns",
+        "Monorepo scaffold och ownership (CODEOWNERS)"
+      ],
+      "key_deliverables": [
+        "System design docs",
+        "Blueprint/DSL spec",
+        "contracts/*.schema.json",
+        "openapi.yaml",
+        "repo_blueprint.json",
+        "CODEOWNERS",
+        "Architecture Decision Records (ADRs)"
+      ]
+    },
+    {
+      "slot": 3,
+      "role": "FSA",
+      "name": "Foundation Sourcing Agent",
+      "primary_responsibilities": [
+        "Kartlägga och välja open-source komponenter för auth, policy, DB, queues, UI, etc.",
+        "Köra adoption scorecard (security, stability, performance, license, etc.)",
+        "Sätta upp golden bases för varje catalog_area",
+        "Underhålla foundation_catalog.json",
+        "CVE monitoring och succession planning",
+        "Licenskompatibilitet och SBOM"
+      ],
+      "key_deliverables": [
+        "foundation_catalog.json",
+        "foundations/{area}/ (golden bases)",
+        "SCORECARD.md per komponent",
+        "ALTERNATIVES.md per area",
+        "CVE monitoring dashboard"
+      ]
+    },
+    {
+      "slot": 4,
+      "role": "API",
+      "name": "Backend/API Developer",
+      "primary_responsibilities": [
+        "Backend services (FastAPI/NestJS baserat på FSA val)",
+        "OpenAPI endpoints implementation",
+        "Codegen-motor: Blueprint → kod",
+        "Multi-tenant isolation (RLS, per-tenant keys)",
+        "Connector-SDK integration",
+        "Rate limiting och cost tracking",
+        "Serverless/Runner-lager"
+      ],
+      "key_deliverables": [
+        "services/api/* (backend kod)",
+        "Codegen engine",
+        "Connector SDK",
+        "Runner/serverless runtime",
+        "API tests (unit + integration)"
+      ]
+    },
+    {
+      "slot": 5,
+      "role": "UI",
+      "name": "Frontend/UI Developer",
+      "primary_responsibilities": [
+        "GUI Studio: Blueprint editor, component library, preview",
+        "Figma tokens → UI theming",
+        "Recipe gallery och marketplace UI",
+        "User onboarding flow",
+        "Dashboard: metrics, cost, usage",
+        "Accessibility (WCAG 2.1 AA)",
+        "Storybook för komponenter"
+      ],
+      "key_deliverables": [
+        "ui-app/* (Next.js app)",
+        "Blueprint editor",
+        "Component library + Storybook",
+        "Recipe marketplace UI",
+        "User dashboard"
+      ]
+    },
+    {
+      "slot": 6,
+      "role": "OPS",
+      "name": "DevOps/SRE",
+      "primary_responsibilities": [
+        "CI/CD pipelines (lint, test, build, scan, deploy)",
+        "Infrastructure-as-code (Terraform/Pulumi)",
+        "Secret management (vault/KMS)",
+        "Observability: logs, metrics, traces (OpenTelemetry)",
+        "Cost tracking per tenant",
+        "Deployment strategies (canary, rollback)",
+        "Docker/Kubernetes setup"
+      ],
+      "key_deliverables": [
+        "infra/* (Terraform/Pulumi)",
+        ".github/workflows/* (CI/CD)",
+        "docker-compose.yml",
+        "Observability stack",
+        "Cost tracking dashboard",
+        "Runbook"
+      ]
+    },
+    {
+      "slot": 7,
+      "role": "QA",
+      "name": "Quality Assurance",
+      "primary_responsibilities": [
+        "Test strategy (unit, contract, e2e, performance)",
+        "Kontraktstester (Pact eller likvärdigt)",
+        "E2E tests (Playwright/Cypress)",
+        "Performance testing och SLO validation",
+        "Test coverage tracking (min 70%)",
+        "Golden tests för codegen",
+        "Evidence logging"
+      ],
+      "key_deliverables": [
+        "tests/* (alla testtyper)",
+        "Test strategy doc",
+        "Coverage reports",
+        "Performance benchmarks",
+        "Evidence log"
+      ]
+    },
+    {
+      "slot": 8,
+      "role": "SEC",
+      "name": "Security Engineer",
+      "primary_responsibilities": [
+        "Säkerhetsgranskning (OIDC, RLS, KMS)",
+        "GDPR compliance (DPIA-mallar, radering/export endpoints)",
+        "ToS-granskning för alla connectors",
+        "SBOM generation och supply chain scanning",
+        "Secret scanning och vulnerability management",
+        "Audit logs design",
+        "Penetration testing (om budget finns)"
+      ],
+      "key_deliverables": [
+        "DPIA-mallar",
+        "Security checklist",
+        "SBOM (CycloneDX/SPDX)",
+        "Vulnerability scan reports",
+        "ToS compliance matrix",
+        "Audit log schema"
+      ]
+    },
+    {
+      "slot": 9,
+      "role": "ANALYST",
+      "name": "Data/Business Analyst",
+      "primary_responsibilities": [
+        "Feature-syntes: user stories → Blueprint components",
+        "Recipe design (appmallar för marknadsplats)",
+        "Connector prioritering (BankID, Fortnox, etc.)",
+        "Usage analytics och adoption metrics",
+        "Pricing model design",
+        "Competitive analysis"
+      ],
+      "key_deliverables": [
+        "User stories",
+        "Recipe templates (20+ för v1)",
+        "Connector prioritization matrix",
+        "Usage analytics dashboard",
+        "Pricing model"
+      ]
+    },
+    {
+      "slot": 10,
+      "role": "WR",
+      "name": "Technical Writer",
+      "primary_responsibilities": [
+        "Dokumentation (README, quickstart, API docs)",
+        "GTM-material (landing page copy, pricing page)",
+        "User guides (Blueprint syntax, connector usage)",
+        "Onboarding tutorials",
+        "Recipe documentation",
+        "Changelog och release notes"
+      ],
+      "key_deliverables": [
+        "docs/* (all user-facing docs)",
+        "README.md",
+        "Quickstart guide",
+        "API documentation",
+        "Recipe tutorials",
+        "GTM copywriting"
+      ]
+    }
+  ],
+  "handshake_protocol": {
+    "stages": ["PLAN", "SPEC", "DRAFT", "REVIEW", "COMMIT", "RELEASE"],
+    "rules": [
+      "PLAN: PM + ägande roll definierar vad, varför, när",
+      "SPEC: ARCH + ägande roll definierar hur (kontrakt, API, schema)",
+      "DRAFT: ägande roll implementerar",
+      "REVIEW: SEC + QA granskar; övriga roller kan ge input",
+      "COMMIT: PM godkänner; kod commitas",
+      "RELEASE: OPS deployer; WR uppdaterar changelog"
+    ]
+  },
+  "collaboration_model": {
+    "daily_sync": "15 min stand-up: vad gjordes, vad görs idag, blockers",
+    "weekly_demo": "Fredag: visa vad som shipats, review metrics",
+    "sprint_length": "2 veckor",
+    "retrospective": "Efter varje sprint: vad gick bra, vad kan förbättras"
+  }
+}
