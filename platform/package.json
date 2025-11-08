@@ -1,0 +1,39 @@
+{
+  "name": "@appkod/monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Appkodplattform - Universal Builder Platform (Monorepo)",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
+    "dev:web": "npm run dev --workspace=@appkod/web",
+    "dev:api": "npm run dev --workspace=@appkod/api",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "validate": "npm run lint && npm run typecheck && npm run test"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "prettier": "^3.3.3",
+    "eslint": "^8.57.1",
+    "vitest": "^2.1.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "keywords": [
+    "low-code",
+    "no-code",
+    "universal-builder",
+    "ai-powered",
+    "gdpr-first",
+    "swedish"
+  ],
+  "author": "Appkod Platform Team",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@appkod/runner",
+  "version": "0.0.1",
+  "description": "Serverless runtime for generated apps - multi-tenant, RBAC, RLS",
+  "private": true,
+  "scripts": {
+    "dev": "cd src && uvicorn main:app --reload --port 8001",
+    "build": "echo 'Python package - no build step needed'",
+    "lint": "cd src && ruff check .",
+    "format": "cd src && ruff format .",
+    "typecheck": "cd src && mypy .",
+    "test": "cd src && pytest",
+    "clean": "find . -type d -name __pycache__ -exec rm -rf {} + && find . -type f -name '*.pyc' -delete"
+  },
+  "keywords": ["runner", "serverless", "multi-tenant", "rbac"],
+  "license": "UNLICENSED",
+  "comment": "This is a Python package managed via pyproject.toml. See pyproject.toml for dependencies."
+}

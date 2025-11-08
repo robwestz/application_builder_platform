@@ -1,0 +1,100 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+.pytest_cache/
+.vitest/
+
+# Next.js
+.next/
+out/
+.vercel
+
+# Production
+dist/
+build/
+
+# Misc
+.DS_Store
+*.pem
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+docker-compose.override.yml
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Pulumi
+.pulumi/
+Pulumi.*.yaml
+
+# Secrets
+*.key
+*.pem
+*.crt
+secrets/
+.secrets/
+
+# Build artifacts
+*.tsbuildinfo
+tsconfig.tsbuildinfo

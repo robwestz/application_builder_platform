@@ -1,0 +1,211 @@
+version: '3.8'
+
+services:
+  # PostgreSQL database with multi-tenant support
+  postgres:
+    image: postgres:16-alpine
+    container_name: appkod-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: appkod
+      POSTGRES_PASSWORD: appkod_dev_password
+      POSTGRES_DB: appkod_platform
+      POSTGRES_INITDB_ARGS: "-E UTF8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U appkod"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis for caching, sessions, and queues
+  redis:
+    image: redis:7-alpine
+    container_name: appkod-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Keycloak for authentication (Auth/SSO)
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.7
+    container_name: appkod-keycloak
+    restart: unless-stopped
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin_dev_password
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: appkod
+      KC_DB_PASSWORD: appkod_dev_password
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: 8080
+      KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+    command: start-dev
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/8080;echo -e 'GET /health/ready HTTP/1.1\r\nhost: http://localhost\r\nConnection: close\r\n\r\n' >&3;if [ $? -eq 0 ]; then echo 'Healthcheck Successful';exit 0;else echo 'Healthcheck Failed';exit 1;fi;"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Open Policy Agent (OPA) for authorization
+  opa:
+    image: openpolicyagent/opa:0.70.0
+    container_name: appkod-opa
+    restart: unless-stopped
+    command: run --server --addr :8181 --log-level debug
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./infra/opa/policies:/policies
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8181/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Temporal for workflow orchestration (queues/scheduling)
+  temporal:
+    image: temporalio/auto-setup:1.25.2
+    container_name: appkod-temporal
+    restart: unless-stopped
+    environment:
+      DB: postgresql
+      DB_PORT: 5432
+      POSTGRES_USER: appkod
+      POSTGRES_PWD: appkod_dev_password
+      POSTGRES_SEEDS: postgres
+      DYNAMIC_CONFIG_FILE_PATH: config/dynamicconfig/development.yaml
+    ports:
+      - "7233:7233"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "tctl", "cluster", "health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Temporal Web UI
+  temporal-ui:
+    image: temporalio/ui:2.34.3
+    container_name: appkod-temporal-ui
+    restart: unless-stopped
+    environment:
+      TEMPORAL_ADDRESS: temporal:7233
+      TEMPORAL_CORS_ORIGINS: http://localhost:3000
+    ports:
+      - "8082:8080"
+    depends_on:
+      - temporal
+
+  # FastAPI backend
+  api:
+    build:
+      context: ./packages/api
+      dockerfile: Dockerfile
+    container_name: appkod-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://appkod:appkod_dev_password@postgres:5432/appkod_platform
+      REDIS_URL: redis://redis:6379/0
+      KEYCLOAK_URL: http://keycloak:8080
+      OPA_URL: http://opa:8181
+      TEMPORAL_HOST: temporal:7233
+      LOG_LEVEL: DEBUG
+      ENVIRONMENT: development
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./packages/api:/app
+      - /app/.venv
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      opa:
+        condition: service_healthy
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Serverless Runner
+  runner:
+    build:
+      context: ./packages/runner
+      dockerfile: Dockerfile
+    container_name: appkod-runner
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://appkod:appkod_dev_password@postgres:5432/appkod_platform
+      REDIS_URL: redis://redis:6379/1
+      KEYCLOAK_URL: http://keycloak:8080
+      OPA_URL: http://opa:8181
+      LOG_LEVEL: DEBUG
+      ENVIRONMENT: development
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./packages/runner:/app
+      - /app/.venv
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      opa:
+        condition: service_healthy
+    command: uvicorn main:app --host 0.0.0.0 --port 8001 --reload
+
+  # Next.js web application
+  web:
+    build:
+      context: .
+      dockerfile: ./packages/web/Dockerfile
+    container_name: appkod-web
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+      NEXT_PUBLIC_KEYCLOAK_URL: http://localhost:8080
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./packages/web:/app/packages/web
+      - ./packages/contracts:/app/packages/contracts
+      - /app/node_modules
+      - /app/packages/web/node_modules
+      - /app/packages/contracts/node_modules
+    depends_on:
+      - api
+    command: npm run dev --workspace=@appkod/web
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  default:
+    name: appkod-network

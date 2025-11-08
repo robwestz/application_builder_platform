@@ -1,0 +1,19 @@
+{
+  "name": "@appkod/api",
+  "version": "0.0.1",
+  "description": "FastAPI backend for Appkod platform",
+  "private": true,
+  "scripts": {
+    "dev": "cd src && uvicorn main:app --reload --port 8000",
+    "build": "echo 'Python package - no build step needed'",
+    "lint": "cd src && ruff check .",
+    "format": "cd src && ruff format .",
+    "typecheck": "cd src && mypy .",
+    "test": "cd src && pytest",
+    "test:watch": "cd src && pytest-watch",
+    "clean": "find . -type d -name __pycache__ -exec rm -rf {} + && find . -type f -name '*.pyc' -delete"
+  },
+  "keywords": ["fastapi", "api", "backend", "python"],
+  "license": "UNLICENSED",
+  "comment": "This is a Python package managed via pyproject.toml. See pyproject.toml for dependencies."
+}

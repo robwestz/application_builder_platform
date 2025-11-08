@@ -1,0 +1,28 @@
+{
+  "name": "@appkod/connectors",
+  "version": "0.0.1",
+  "description": "Connector SDK for Swedish/EU integrations - BankID, Fortnox, Visma, Stripe, etc.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "lint": "eslint src",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@appkod/contracts": "*",
+    "zod": "^3.23.8",
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5",
+    "eslint": "^8.57.1"
+  },
+  "keywords": ["connectors", "integrations", "bankid", "fortnox", "visma", "stripe"],
+  "license": "UNLICENSED"
+}

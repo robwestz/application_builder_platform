@@ -1,0 +1,24 @@
+{
+  "name": "@appkod/contracts",
+  "version": "0.0.1",
+  "description": "Shared contracts, types, and schemas for Appkod platform",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  },
+  "keywords": ["contracts", "schemas", "types"],
+  "license": "UNLICENSED"
+}
