@@ -1,16 +1,19 @@
 {
-  "title": "Svensk Appkodplattform – Universal Builder för VILKEN APP SOM HELST",
-  "core_idea": "Bygg VILKEN APP SOM HELST - från enkla hemsidor till avancerade SaaS-plattformar - via konversation eller Blueprint, med full kodexport och utan vendor lock-in.",
-  "why_now": "Svenska företag behöver en europeisk, GDPR-first, universal builder som inte är beroende av amerikanska molntjänster. Möjlighet att bli först i Sverige med enterprise-klass conversational builder som kan generera ALLA typer av applikationer.",
+  "title": "Svensk Appkodplattform – Bygg VAD SOM HELST av VEM SOM HELST",
+  "core_idea": "Bygg VILKEN APP SOM HELST - från enkla hemsidor till avancerade SaaS-plattformar - av NÄSTAN VEM SOM HELST. AI hanterar det tekniska (databaser, API:er, säkerhet, infrastruktur) så att icke-tekniska användare kan skapa professionella applikationer via konversation.",
+  "ai_democratization": "AI gör avancerad app-utveckling tillgänglig för alla. Detta är både goodwill (folk älskar när AI gör det tekniska) OCH helt avgörande för affären (utan AI skulle detta inte vara möjligt). Citizen developers, business people och entrepreneurs kan bygga det de behöver utan att anställa utvecklare.",
+  "why_now": "Svenska företag behöver en europeisk, GDPR-first, universal builder där VEM SOM HELST kan bygga VILKEN APP SOM HELST - inte bara developers. Möjlighet att bli först i Sverige med AI-powered democratization av app-utveckling.",
   "target_users": [
-    "Svenska företag (SME + Enterprise) som vill snabba upp app-utveckling av VILKEN typ som helst",
+    "Icke-tekniska användare (citizen developers, business people) som vill bygga sina egna appar utan att lära sig koda",
+    "Entrepreneurs och grundare som vill validera idéer snabbt utan att anställa utvecklare",
+    "Inhouse-team som saknar utvecklarkapacitet men har verksamhetskunnande och vill bygga egna verktyg",
+    "Svenska företag (SME + Enterprise) som vill demokratisera app-utveckling internt",
     "Konsulter/byråer som behöver snabb prototypning och leverans av websites, e-commerce, SaaS, business apps",
-    "Inhouse-team som saknar utvecklarkapacitet men har verksamhetskunnande",
-    "Organisationer med strikta compliance-krav (offentlig sektor, finans, hälsa)",
-    "Entrepreneurs som vill bygga allt från landing pages till fullständiga plattformar"
+    "Organisationer med strikta compliance-krav (offentlig sektor, finans, hälsa) som vill ha EU-hosted lösning",
+    "ALLA som har en idé men inte har tekniska skills - AI hanterar det tekniska"
   ],
   "application_scope": "Websites, E-commerce, SaaS apps, CRM/ERP, booking systems, forums/communities, database apps, custom integrations - allt med avancerade funktioner (databaser, auth, payments, workflows, etc.)",
-  "value_hypothesis": "En universal conversational builder som genererar fullständig, exporterbar kod (Next.js + FastAPI + databas) för VILKEN APP SOM HELST, med inbyggda svenska/EU-connectors (BankID, Fortnox, Visma, etc.), EU-hosting, och zero-trust säkerhet från dag 1. Kunden får både snabb time-to-market OCH full äganderätt av koden.",
+  "value_hypothesis": "AI-powered democratization av app-utveckling: VEM SOM HELST kan bygga VILKEN APP SOM HELST genom att prata med AI. AI hanterar databaser, API:er, säkerhet, infrastruktur - användaren behöver bara beskriva vad de vill ha. Full kod-export (Next.js + FastAPI + databas), svenska/EU-connectors (BankID, Fortnox, Visma), EU-hosting, zero-trust säkerhet från dag 1. Resultat: snabb time-to-market UTAN att behöva anställa utvecklare + full äganderätt av koden.",
   "must_have_outcomes": [
     "Blueprint-driven codegen: konversation → YAML/JSON spec → fullständig app-kod",
     "Kod-export: kund kan ta sin genererade kod och köra själv (ingen vendor lock-in)",
@@ -28,7 +31,8 @@
     "Ingen 'toy' UI-only builder – detta är full-stack med starka rails",
     "Inga ToS-brott eller otillåten datainsamling"
   ],
-  "competitive_positioning": "En kombination av Bubble + Retool + Webflow + Shopify - fast med kod-export och svensk/EU-fokus. Fokus på: (1) VILKEN APP SOM HELST (websites, e-commerce, SaaS, business apps), (2) kod-export och fullständigt ägarskap, (3) svenska/EU-connectors (BankID, Fortnox, Visma), (4) enterprise-säkerhet från dag 1, (5) LLM-driven conversational interface, (6) GDPR-by-design, (7) ingen vendor lock-in.",
+  "why_democratization_matters": "Traditionellt har app-utveckling varit reserverat för dem med teknisk utbildning och resurser att anställa utvecklare. Detta skapar ojämlikhet: bra idéer från icke-tekniska personer förblir orealiserade, småföretagare kan inte konkurrera med större aktörer, och kvinnor/underrepresenterade grupper har mindre tillgång till teknisk kompetens. Genom AI-powered democratization kan ALLA - oavsett bakgrund, utbildning eller ekonomiska resurser - realisera sina idéer. Detta är både rättvist OCH bra för innovation och ekonomi.",
+  "competitive_positioning": "En kombination av Bubble + Retool + Webflow + Shopify - fast med AI-powered democratization och svensk/EU-fokus. Fokus på: (1) VEM SOM HELST kan bygga VILKEN APP SOM HELST (AI hanterar det tekniska), (2) kod-export och fullständigt ägarskap, (3) svenska/EU-connectors (BankID, Fortnox, Visma), (4) enterprise-säkerhet från dag 1, (5) LLM-driven conversational interface för icke-tekniska användare, (6) GDPR-by-design, (7) ingen vendor lock-in, (8) demokratisering av innovation och företagande.",
   "business_model": "SaaS: plattformssäte + build minutes + connector-användning. Enterprise: on-prem deploy + support. Marketplace: provision på recipes och connectors.",
   "success_criteria": [
     "Time-to-first-app < 30 minuter",

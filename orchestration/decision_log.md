@@ -163,6 +163,32 @@
 
 ---
 
+## DEC-007: "VEM SOM HELST kan bygga VAD SOM HELST" - AI-powered democratization
+
+- **Date:** 2025-11-08
+- **Who:** PM (based on user clarification)
+- **What:** Core positioning är "VEM SOM HELST kan bygga VILKEN APP SOM HELST". AI hanterar det tekniska så icke-tekniska användare kan bygga professionella appar. Detta är både goodwill OCH business-critical.
+- **Why:**
+  - User clarification: "Jag ville bara få fram att appen ska bli känd för att den kan bygga 'vad som helst' och gärna nästan av vem som helst - att göra användningen av ai för avancerade tekniska saker är både goodwill och helt avgörande för affären"
+  - Demokratisering av app-utveckling är både rättvist OCH bra för innovation/ekonomi
+  - Traditionellt har app-utveckling varit reserverat för dem med teknisk utbildning/resurser
+  - AI-powered democratization gör att ALLA - oavsett bakgrund, utbildning, ekonomiska resurser - kan realisera sina idéer
+  - Särskilt viktigt för jämställdhet: kvinnor/underrepresenterade grupper har mindre tillgång till teknisk kompetens
+  - AI som hanterar det tekniska är goodwill (folk älskar det) OCH avgörande för affären (utan AI skulle detta inte vara möjligt)
+- **Alternatives considered:**
+  - Fokus endast på developers/tekniska användare → rejected, begränsar marknad och impact
+  - Positionera som "low-code" istället för "AI-powered" → rejected, AI är differentiator och goodwill-generator
+- **Impact:**
+  - Marketing/GTM leder med: "VEM SOM HELST kan bygga VILKEN APP SOM HELST - AI hanterar det tekniska"
+  - Target users expanderar: citizen developers, business people, entrepreneurs, småföretagare, ALLA med idéer
+  - Value prop: Demokratisering av innovation och företagande
+  - Brand positioning: Inkluderande, jämställdhet, tillgänglighet
+  - Success metrics bör inkludera: % icke-tekniska användare, diversity metrics
+  - Conversational interface är PRIMÄR (inte GUI Studio) för icke-tekniska
+- **Status:** Active
+
+---
+
 ## Template for Future Decisions
 
 ```markdown
@@ -180,4 +206,4 @@
 ---
 
 **Last updated:** 2025-11-08 by PM (session 1)
-**Total decisions:** 6
+**Total decisions:** 7
